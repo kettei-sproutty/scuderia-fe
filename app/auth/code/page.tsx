@@ -1,12 +1,19 @@
-import { PageProps } from ".next/types/app/auth/code/page";
 import Button from "@components/button";
 import Input from "@components/input";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
-const VerifyOtpPage = async ({ searchParams }: PageProps) => {
-  const email: string = searchParams["email"];
+type PageParms = {
+  email?: string;
+};
+
+type VerifyOtpPageProps = {
+  searchParams: PageParms;
+};
+
+const VerifyOtpPage = async ({ searchParams }: VerifyOtpPageProps) => {
+  const email = searchParams["email"];
   if (!email) notFound();
 
   const loginAction = async (formData: FormData) => {
@@ -21,7 +28,10 @@ const VerifyOtpPage = async ({ searchParams }: PageProps) => {
       token: token.toString(),
     });
 
-    console.log(status);
+    if (!status.data.session || !status.data.user) throw new Error("Invalid token");
+
+    await supabase.auth.setSession(status.data.session);
+    await supabase.auth.updateUser(status.data.user);
   };
 
   return (

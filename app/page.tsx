@@ -1,12 +1,16 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
-const HomePage = () => {
+const HomePage = async () => {
   const supabase = createServerComponentClient({ cookies });
+  const { data: userData } = await supabase.auth.getUser();
+
+  if (!userData.user) redirect("/auth");
 
   return (
     <div>
-      <pre>{JSON.stringify(supabase.auth.getSession())}</pre>
+      <pre>{JSON.stringify(userData.user, undefined, "\t")}</pre>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import Button from "@components/button";
 import Input from "@components/input";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 
 const LoginPage = () => {
