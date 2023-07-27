@@ -1,0 +1,21 @@
+name: Lint
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.x"
+          package-manager: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
+      - name: Run Prettier
+        run: pnpm run format
+      - name: Run ESLint
+        run: pnpm run lint
