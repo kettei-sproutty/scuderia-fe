@@ -27,8 +27,7 @@
     "useTabs": false,
     "tabWidth": 2,
     "arrowParens": "always",
-    "semi": true,
-    "editorconfig": true
+    "semi": true
   },
   "eslintConfig": {
     "extends": [
