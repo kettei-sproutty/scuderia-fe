@@ -21,7 +21,9 @@ const LoginPage = () => {
       },
     });
 
-    redirect("/auth/email-sent");
+    const searchParams = new URLSearchParams({ email: email.toString() });
+
+    redirect(`/auth/code?${searchParams.toString()}`);
   };
 
   return (
