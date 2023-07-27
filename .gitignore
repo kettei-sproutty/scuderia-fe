@@ -1,0 +1,20 @@
+# Node
+node_modules
+.pnp
+.pnp.js
+
+# Next
+.next
+out
+
+# Misc
+.DS_Store
+
+# Envs
+.env*.local
+
+# Vercel
+.vercel
+
+# Typescript
+next-env.d.ts
