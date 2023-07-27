@@ -1,3 +1,5 @@
+import Button from "@components/button";
+import Input from "@components/input";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
@@ -19,13 +21,13 @@ const LoginPage = () => {
       },
     });
 
-    redirect("/email-sent");
+    redirect("/auth/email-sent");
   };
 
   return (
     <form action={loginAction}>
-      <input required type="email" name="email" />
-      <button type="submit">Login</button>
+      <Input required type="email" name="email" label="email" />
+      <Button type="submit">Login</Button>
     </form>
   );
 };
