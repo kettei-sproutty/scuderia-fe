@@ -13,4 +13,5 @@ runs:
         node-version: "18.x"
         cache: "pnpm"
     - name: Install dependencies
+      shell: bash
       run: pnpm install --frozen-lockfile
