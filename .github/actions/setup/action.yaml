@@ -1,27 +1,16 @@
 name: "Shared Setup"
 description: "Shared setup for installing pnpm and node and dependencies"
 
-inputs:
-  version:
-    description: "The version of pnpm to install"
-    required: true
-    default: "8.6.10"
-
-  node-version:
-    description: "The version of Node.js to use"
-    required: true
-    default: "18.x"
-
 runs:
   using: "composite"
   steps:
     - uses: pnpm/action-setup@v2
       with:
-        version: ${{ inputs.version }}
+        version: "8.6.10"
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ inputs.node-version }}
+        node-version: "18.x"
         cache: "pnpm"
     - name: Install dependencies
       run: pnpm install --frozen-lockfile
