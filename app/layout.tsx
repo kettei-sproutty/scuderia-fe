@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { PropsWithChildren, ReactElement } from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 
 export const dynamic = "force-dynamic";
 
@@ -45,12 +44,11 @@ export const metadata: Metadata = {
   },
 };
 
-// const inter = Inter({ subsets: ["latin"] });
-
 const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
       <body className={"mx-4 my-8 flex-auto flex-col md:mx-auto md:mb-0 md:flex-row"}>
+        <h1 className={"text-center font-ferroRosso text-5xl"}>Scuderia Frontend</h1>
         <main className={"mt-0 min-w-0 flex-auto flex-col p-0 md:mt-8 md:p-6"}>{children}</main>
       </body>
     </html>
