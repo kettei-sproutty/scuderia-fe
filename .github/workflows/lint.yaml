@@ -14,19 +14,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
+      - name: Setup
+        uses: ./.github/actions/setup
         with:
           version: "8.6.10"
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
           node-version: "18.x"
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
       - name: Run Prettier
         run: pnpm run format
       - name: Run ESLint
         run: pnpm run lint
+      - name: Set output status
+        id: output_status
+        run: echo "lint-status=success" >> $GITHUB_ENV
