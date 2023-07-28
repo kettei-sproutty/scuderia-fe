@@ -4,16 +4,13 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { css, cx } from "@styled-system/css";
 
-const description = "Developer, Rust and Typescript enthusiast.";
-const url = process.env.NEXT_URL;
+export const dynamic = "force-dynamic";
+
+const url = new URL("https://www.scuderia-fe.com");
 
 export const metadata: Metadata = {
-  keywords: [
-    "Scuderia Frontend",
-    "Scuderia FE",
-    "scuderiafe",
-    "www.scuderiafrontend.com",
-  ],
+  metadataBase: url,
+  keywords: ["Scuderia Frontend", "Scuderia FE", "scuderiafe", "www.scuderiafrontend.com"],
   title: {
     default: "Scuderia Frontend",
     template: "%s | Scuderia Frontend",
@@ -24,13 +21,13 @@ export const metadata: Metadata = {
     title: "Scuderia Frontend",
   },
   manifest: "https://www.scuderiafrontend.com/manifest.json",
-  description,
+  description: "Scuderia FE",
   openGraph: {
     title: {
       default: "Scuderia Frontend",
       template: "%s | Scuderia Frontend",
     },
-    description,
+    description: "Scuderia FE",
     url,
     siteName: "Scuderia Frontend",
     type: "website",
