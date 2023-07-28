@@ -18,3 +18,6 @@ out
 
 # Typescript
 next-env.d.ts
+
+# Webstorm
+.idea
