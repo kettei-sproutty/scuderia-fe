@@ -1,8 +1,6 @@
 import "./globals.css";
 import type { PropsWithChildren, ReactElement } from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { css, cx } from "@styled-system/css";
 
 export const dynamic = "force-dynamic";
 
@@ -46,45 +44,12 @@ export const metadata: Metadata = {
   },
 };
 
-const inter = Inter({ subsets: ["latin"] });
-
-const htmlStyles = css({
-  backgroundColor: "#09090a",
-  color: "#fff",
-  fontSize: "16px",
-  lineHeight: "1.5",
-});
-
-const bodyStyles = css({
-  mx: 4,
-  my: 8,
-  flex: "1 1 auto",
-  flexDirection: "column",
-  fontSmoothing: "antialiased",
-  md: {
-    mx: "auto",
-    mb: 0,
-    flexDirection: "row",
-  },
-});
-
-const mainStyles = css({
-  mt: 0,
-  flex: "1 1 auto",
-  minWidth: 0,
-  flexDir: "column",
-  p: 0,
-  md: {
-    p: 6,
-    mt: 6,
-  },
-});
-
 const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
-    <html lang="en" className={cx(htmlStyles, inter.className)}>
-      <body className={bodyStyles}>
-        <main className={mainStyles}>{children}</main>
+    <html lang="en" className={"bg-background text-white"}>
+      <body className={"mx-4 my-8 flex-auto flex-col md:mx-auto md:mb-0 md:flex-row"}>
+        <h1 className={"text-center font-ferroRosso text-5xl"}>Scuderia Frontend</h1>
+        <main className={"mt-0 min-w-0 flex-auto flex-col p-0 md:mt-8 md:p-6"}>{children}</main>
       </body>
     </html>
   );
