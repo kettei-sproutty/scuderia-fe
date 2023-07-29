@@ -12,6 +12,7 @@ on:
 
 jobs:
   Deploy-Preview:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     outputs:
       deploymentUrl: ${{ steps.deploy-step.outputs.deploymentUrl }}
@@ -33,6 +34,7 @@ jobs:
           echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
   Add-Comment:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     needs: Deploy-Preview
     permissions:
       issues: write
