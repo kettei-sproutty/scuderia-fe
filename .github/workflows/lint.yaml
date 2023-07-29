@@ -17,6 +17,5 @@ jobs:
         run: pnpm run format
       - name: Run ESLint
         run: pnpm run lint
-      - name: Set output status
-        id: output_status
-        run: echo "lint-status=success" >> $GITHUB_ENV
+      - name: Run Tests
+        run: pnpm run test

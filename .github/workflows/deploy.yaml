@@ -1,13 +1,15 @@
 name: Vercel Preview Deployment
+
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
 on:
   pull_request:
-    types: [opened, reopened, edited]
+    types: [opened, reopened, edited, synchronize]
+
 jobs:
   Deploy-Preview:
-    if: ${{ needs.lint.outputs.lint-status == 'success' }}
     runs-on: ubuntu-latest
     outputs:
       deploymentUrl: ${{ steps.deploy-step.outputs.deploymentUrl }}

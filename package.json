@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "echo \"TODO!\" && exit 0"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
