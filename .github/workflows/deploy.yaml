@@ -11,6 +11,7 @@ on:
 jobs:
   Deploy-Preview:
     runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
     outputs:
       deploymentUrl: ${{ steps.deploy-step.outputs.deploymentUrl }}
     steps:
@@ -31,6 +32,7 @@ jobs:
           echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
   Add-Comment:
     runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
     needs: Deploy-Preview
     permissions:
       issues: write
