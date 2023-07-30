@@ -2,9 +2,9 @@
 import { animate, useMotionValue } from "framer-motion";
 import { useEffect, useState } from "react";
 import AnimatedText from "@components/animated-text";
-import Progress from "@components/progress";
+import LoadingProgress from "@components/loading-progress";
 
-const AnimatedLoading = () => {
+const ComingSoon = () => {
   const count = useMotionValue(0);
 
   const [ready, setReady] = useState(false);
@@ -15,6 +15,6 @@ const AnimatedLoading = () => {
     return animation.stop;
   }, []);
 
-  return ready ? <AnimatedText text={"Scuderia Frontend"} /> : <Progress count={count} />;
+  return ready ? <AnimatedText text={"Scuderia Frontend"} /> : <LoadingProgress count={count} />;
 };
-export default AnimatedLoading;
+export default ComingSoon;
