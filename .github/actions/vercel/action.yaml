@@ -35,4 +35,3 @@ runs:
         else
           vercel deploy --prebuilt --token=${{ inputs.vercel-token }} > deployment-url.txt
         fi
-        echo "::set-output name=deployment-url::$(cat deployment-url.txt)"
