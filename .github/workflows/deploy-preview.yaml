@@ -6,7 +6,7 @@ env:
 
 on:
   pull_request_review:
-    types: [submitted]
+    types: [submitted, edited]
 
 jobs:
   deploy-preview:
