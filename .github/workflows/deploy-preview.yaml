@@ -6,14 +6,12 @@ env:
 
 on:
   pull_request_review:
-    types: [submitted, edited]
-  pull_request:
-    types: [edited, reopened, synchronize, ready_for_review]
+    types: [submitted]
 
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.event.pull_request.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     outputs:
       deployment-url: ${{ steps.deploy-step.outputs.deployment-url }}
     steps:
@@ -28,7 +26,7 @@ jobs:
           environment: preview
   add-comment:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.event.pull_request.review.state == 'approved'
+    if: github.event.review.state == 'approved'
     needs: deploy-preview
     permissions:
       issues: write
