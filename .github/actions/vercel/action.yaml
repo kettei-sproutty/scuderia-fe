@@ -13,7 +13,6 @@ inputs:
 outputs:
   deployment-url:
     description: "The URL of the deployment"
-    required: true
 
 runs:
   using: "composite"
