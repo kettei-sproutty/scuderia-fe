@@ -9,7 +9,8 @@ export default {
       },
       colors: {
         //TODO handle theme config properly
-        background: "#09090a",
+        background: "#181818",
+        redFerrari: "#FF2800",
       },
     },
   },

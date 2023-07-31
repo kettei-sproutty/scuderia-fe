@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 
-@font-face {
-  font-family: 'Ferro Rosso';
-  font-style: normal;
-  src: url('../public/fonts/ferro-rosso.regular.ttf') format('truetype');
+@layer base{
+    @font-face {
+        font-family: 'Ferro Rosso';
+        font-style: normal;
+        src: url('../public/fonts/ferro-rosso.regular.ttf') format('truetype');
+    }
 }
+
+
+
 
 
 
