@@ -1,0 +1,17 @@
+name: "Shared Setup"
+description: "Shared setup for installing pnpm and node and dependencies"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: pnpm/action-setup@v2
+      with:
+        version: "8.6.10"
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: "18.x"
+        cache: "pnpm"
+    - name: Install dependencies
+      shell: bash
+      run: pnpm install --frozen-lockfile

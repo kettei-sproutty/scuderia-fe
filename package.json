@@ -8,13 +8,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "test": "echo \"TODO!\" && exit 0",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*.{js,cjs,mjs,ts,tsx,mdx}": [
+    "*.{js,cjs,mjs,ts,tsx}": [
       "prettier --write --",
       "eslint --fix --"
     ],
@@ -25,7 +28,8 @@
   "eslintConfig": {
     "extends": [
       "next/core-web-vitals",
-      "plugin:tailwindcss/recommended"
+      "plugin:tailwindcss/recommended",
+      "plugin:storybook/recommended"
     ],
     "rules": {
       "no-unused-vars": [
@@ -57,6 +61,14 @@
     "typescript": "^5.1.6"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-interactions": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.1.1",
+    "@storybook/nextjs": "^7.1.1",
+    "@storybook/react": "^7.1.1",
+    "@storybook/testing-library": "^0.2.0",
     "@types/node": "^20.4.5",
     "@types/react": "^18.2.17",
     "@types/react-dom": "^18.2.7",
@@ -64,19 +76,13 @@
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
+    "eslint-plugin-storybook": "^0.6.13",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "lint-staged": "^13.2.3",
     "postcss": "^8.4.27",
     "prettier": "^3.0.0",
     "simple-git-hooks": "^2.9.0",
+    "storybook": "^7.1.1",
     "tailwindcss": "^3.3.3"
-  },
-  "engines": {
-    "node": "18",
-    "pnpm": "^8.6.10"
-  },
-  "volta": {
-    "node": "18.17.0",
-    "pnpm": "8.6.10"
   }
 }

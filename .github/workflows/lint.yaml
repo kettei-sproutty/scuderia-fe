@@ -1,12 +1,8 @@
 name: Lint
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
+    types: [opened, reopened, edited, synchronize]
 
 jobs:
   lint:
@@ -15,18 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-      - uses: pnpm/action-setup@v2
-        with:
-          version: "8.6.10"
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18.x"
-          cache: "pnpm"
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: ./.github/actions/setup
       - name: Run Prettier
         run: pnpm run format
       - name: Run ESLint
         run: pnpm run lint
+      - name: Run Tests
+        run: pnpm run test
