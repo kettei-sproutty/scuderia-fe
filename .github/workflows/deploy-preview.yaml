@@ -48,3 +48,12 @@ jobs:
               repo: context.repo.repo,
               body: "Deployed [preview](${{env.DEPLOYMENT_URL}})"
             })
+      - name: Create GitHub deployment
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        env:
+          DEPLOYMENT_URL: ${{needs.deploy-preview.outputs.deployment-url}}
+        with:
+          token: "${{ github.token }}"
+          environment-url: ${{ env.DEPLOYMENT_URL }}
+          environment: preview
