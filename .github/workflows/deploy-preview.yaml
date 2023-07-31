@@ -44,5 +44,5 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "Deployed at ${{env.DEPLOYMENT_URL}}"
+              body: "Deployed [preview](${{env.DEPLOYMENT_URL}})"
             })
