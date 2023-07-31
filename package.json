@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
+    "test": "echo \"TODO!\" && exit 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
