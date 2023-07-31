@@ -1,4 +1,4 @@
-name: Vercel Preview Deployment
+name: Deploy on Vercel
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -9,40 +9,34 @@ on:
     types: [submitted]
 
 jobs:
-  Deploy-Preview:
+  deploy-preview:
     runs-on: ubuntu-latest
     if: github.event.review.state == 'approved'
     outputs:
-      deploymentUrl: ${{ steps.deploy-step.outputs.deploymentUrl }}
+      deployment-url: ${{ steps.deploy-step.outputs.deployment-url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Setup
         uses: ./.github/actions/setup
-      - name: Install Vercel CLI
-        run: pnpm install --global vercel@latest
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Build Project Artifacts
-        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy Project Artifacts to Vercel
+      - name: Deploy
+        uses: ./.github/actions/vercel
         id: deploy-step
-        run: |
-          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} >deployment-url.txt
-          echo "deploymentUrl=$(cat deployment-url.txt)" >> $GITHUB_OUTPUT
-  Add-Comment:
+        with:
+          environment: preview
+  add-comment:
     runs-on: ubuntu-latest
     if: github.event.review.state == 'approved'
-    needs: Deploy-Preview
+    needs: deploy-preview
     permissions:
       issues: write
       pull-requests: write
     steps:
       - name: Comment URL to PR
         env:
-          DEPLOYMENT_URL: ${{needs.Deploy-Preview.outputs.deploymentUrl}}
+          DEPLOYMENT_URL: ${{needs.deploy-preview.outputs.deployment-url}}
         uses: actions/github-script@v6
-        id: my-script
+        id: comment-with-url
         with:
           script: |
             github.rest.issues.createComment({
