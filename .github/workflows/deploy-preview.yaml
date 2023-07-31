@@ -24,6 +24,7 @@ jobs:
         id: deploy-step
         with:
           environment: preview
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
   add-comment:
     runs-on: ubuntu-latest
     if: github.event.review.state == 'approved'

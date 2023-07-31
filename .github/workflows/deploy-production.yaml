@@ -22,3 +22,4 @@ jobs:
         uses: ./.github/actions/vercel
         with:
           environment: production
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
