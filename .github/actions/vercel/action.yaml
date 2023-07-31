@@ -1,5 +1,5 @@
 name: "Install vercel and deploy"
-description: "Shared setup for installing pnpm and node and dependencies"
+description: "Deploy action for Vercel"
 
 inputs:
   environment:
