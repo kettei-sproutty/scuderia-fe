@@ -34,6 +34,7 @@ jobs:
     permissions:
       issues: write
       pull-requests: write
+      deployments: write
     steps:
       - name: Comment URL to PR
         env:
