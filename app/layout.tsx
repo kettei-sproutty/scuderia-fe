@@ -48,7 +48,7 @@ const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
       <body className={" flex h-screen flex-1  flex-col px-6 py-8 "}>
-        <main className={"h-full"}>{children}</main>
+        <main className={"my-auto h-48"}>{children}</main>
       </body>
     </html>
   );

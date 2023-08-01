@@ -2,7 +2,7 @@ import Button from "@components/button";
 import Input from "@components/input";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 type PageParms = {
   email?: string;
@@ -32,6 +32,8 @@ const VerifyOtpPage = async ({ searchParams }: VerifyOtpPageProps) => {
 
     await supabase.auth.setSession(status.data.session);
     await supabase.auth.updateUser(status.data.user);
+
+    redirect("/coming-soon");
   };
 
   return (

@@ -13,7 +13,7 @@ const handler = async (request: Request) => {
     await supabase.auth.exchangeCodeForSession(code);
   }
 
-  return NextResponse.redirect(requestUrl.origin);
+  return NextResponse.redirect(new URL("/coming-soon", requestUrl.origin));
 };
 
 export { handler as GET };
