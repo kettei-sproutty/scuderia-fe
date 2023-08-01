@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/kettei-sproutty/scuderia-fe/compare/v1.0.0...v1.0.1) (2023-08-01)
+
+
+### Bug Fixes
+
+* **ci:** enable vercel github integration ([48e80ef](https://github.com/kettei-sproutty/scuderia-fe/commit/48e80efb18845043636d6e91a212580be9900be8))
+
 ## 1.0.0 (2023-07-31)
 
 
