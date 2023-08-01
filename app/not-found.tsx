@@ -1,7 +1,10 @@
-import { redirect } from "next/navigation";
+"use client";
+import { useEffect } from "react";
 
 const NotFoundPage = () => {
-  redirect("/coming-soong");
+  useEffect(() => {
+    window.location.replace("https://www.scuderia-fe.com/coming-soon");
+  }, []);
 
   return <></>;
 };
