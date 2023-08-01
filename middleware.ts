@@ -9,7 +9,7 @@ export const middleware = async (req: NextRequest) => {
   const { data } = await supabase.auth.getSession();
 
   if (!data.session) {
-    return NextResponse.redirect(new URL("/auth", req.url));
+    return NextResponse.redirect(new URL("/coming-soon", req.url));
   }
 
   const user = await supabase.auth.getUser();

@@ -9,14 +9,14 @@ const Input = ({ label, ...props }: InputProps) => {
     <div>
       <label
         htmlFor={props.id}
-        className={"text-sm font-medium text-gray-900 focus-within:bg-indigo-600"}
+        className={"text-sm font-medium  text-white focus-within:bg-indigo-600"}
       >
         {label}
       </label>
       <div className={"mt-2"}>
         <div className="mt-2 flex items-center rounded-md border border-gray-300 bg-gray-100">
           <input
-            className={` flex flex-1  border-0 bg-transparent px-1 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0`}
+            className={`flex w-full  border-0 bg-gray-600 px-1 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0`}
             {...props}
           />
         </div>
