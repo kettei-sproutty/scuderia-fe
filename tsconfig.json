@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@components/*": ["components/*"],
-      "@styled-system/*": ["styled-system/*"]
+      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"]
     },
     "plugins": [{ "name": "next" }]
   },
