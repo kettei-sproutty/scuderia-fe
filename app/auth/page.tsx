@@ -9,8 +9,10 @@ const LoginPage = () => {
     "use server";
     const email = formData.get("email");
     if (!email) throw new Error("Email is required");
-    // if (!email.toString().endsWith("@accenture.com"))
-    //   throw new Error("Email must be an Accenture email");
+    if (!email.toString().endsWith("@accenture.com")) {
+      // TODO: Show error message
+      console.log("Not accenture email");
+    }
 
     const supabase = createServerActionClient({ cookies });
     await supabase.auth.signInWithOtp({
