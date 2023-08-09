@@ -31,7 +31,6 @@ const LoginPage = () => {
   return (
     <form action={loginAction} className={"m-auto h-44 w-1/3 rounded px-4 "}>
       <Input required type="email" name="email" label="email" className={" h-12 text-gray-900 "} />
-
       <Button type="submit">Login</Button>
     </form>
   );
