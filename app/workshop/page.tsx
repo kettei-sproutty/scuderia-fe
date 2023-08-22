@@ -6,13 +6,17 @@ const WorkshopPage = async () => {
   const today = new Date().toISOString();
 
   const supabase = getSupabase("server-component", { cookies });
-  const pastWorkshops = await supabase.schema("workshop")
+  const pastWorkshops = await supabase
+    // @ts-ignore
+    .schema("workshop")
     .from("workshop")
     .select("*")
     .lt("date", today)
     .order("date", { ascending: false });
 
-  const upcomingWorkshop = await supabase.schema("workshop")
+  const upcomingWorkshop = await supabase
+    // @ts-ignore
+    .schema("workshop")
     .from("workshop")
     .select("*")
     .gte("date", today)
