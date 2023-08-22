@@ -12,13 +12,13 @@ dependencies:
     specifier: ^0.7.4
     version: 0.7.4(@supabase/supabase-js@2.33.0)
   '@supabase/supabase-js':
-    specifier: ^2.33.0
+    specifier: ^2.31.0
     version: 2.33.0(encoding@0.1.13)
   framer-motion:
-    specifier: ^10.16.1
+    specifier: ^10.15.0
     version: 10.16.1(react-dom@18.2.0)(react@18.2.0)
   next:
-    specifier: ^13.4.19
+    specifier: ^13.4.12
     version: 13.4.19(@babel/core@7.22.10)(react-dom@18.2.0)(react@18.2.0)
   react:
     specifier: ^18.2.0
@@ -26,9 +26,6 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
-  typescript:
-    specifier: ^5.1.6
-    version: 5.1.6
 
 devDependencies:
   '@storybook/addon-essentials':
@@ -100,6 +97,9 @@ devDependencies:
   tailwindcss:
     specifier: ^3.3.3
     version: 3.3.3
+  typescript:
+    specifier: ^5.1.6
+    version: 5.1.6
 
 packages:
 
@@ -10826,6 +10826,7 @@ packages:
     resolution: {integrity: sha512-zaWCozRZ6DLEWAWFrVDz1H6FVXzUSfTy5FUMWsQlU8Ym5JP9eO4xkTIROFCQvhQf61z6O/G6ugw3SgAnvvm+HA==}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   /uglify-js@3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}

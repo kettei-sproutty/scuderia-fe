@@ -14,6 +14,8 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     label: { control: "text" },
+    required: { control: "boolean" },
+    error: { control: "text" },
   },
 } satisfies Meta<typeof Input>;
 
