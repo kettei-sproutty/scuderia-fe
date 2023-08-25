@@ -6,7 +6,6 @@ import {
 import type {
   SignInWithPasswordlessCredentials,
   SupabaseClient,
-  User,
   VerifyOtpParams,
 } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
