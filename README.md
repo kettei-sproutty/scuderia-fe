@@ -1,7 +1,7 @@
 <p align="center">
   <img
     alt="scuderia frontend"
-    src="https://github.com/kettei-sproutty/scuderia-fe/tree/main/public/docs/docs-logo.webp"
+    src="https://raw.githubusercontent.com/kettei-sproutty/scuderia-fe/main/public/docs/docs-logo.webp"
   >
 </p>
 
@@ -42,7 +42,7 @@
 <p align="center">
   <img
     alt="Install"
-    src="https://github.com/kettei-sproutty/scuderia-fe/tree/main/public/docs/docs-install.webp"
+    src="https://raw.githubusercontent.com/kettei-sproutty/scuderia-fe/main/public/docs/docs-install.webp"
   >
 </p>
 
@@ -93,20 +93,20 @@ Follow these steps to set up the Scuderia FE project on your system:
 7.  **Running the Project**
     Use the following commands to run different aspects of the project:
 
-        - To start the Next.js application:
-          ```sh
-          pnpm dev
-          ```
+   - To start the Next.js application:    
+     ```sh
+        pnpm dev
+      ```
 
-        - To launch the Storybook environment:
-          ```sh
-          pnpm storybook
-          ```
+  - To launch the Storybook environment:
+    ```sh
+      pnpm storybook
+    ```
 
 <p align="center">
   <img
     alt="Contributing"
-    src="https://github.com/kettei-sproutty/scuderia-fe/tree/main/public/docs/docs-contributing.webp"
+    src="https://raw.githubusercontent.com/kettei-sproutty/scuderia-fe/main/public/docs/docs-contributing.webp"
   >
 </p>
 
@@ -115,7 +115,7 @@ WIP
 <p align="center">
   <img
     alt="Code of conduct"
-    src="https://github.com/kettei-sproutty/scuderia-fe/tree/main/public/docs/docs-code-of-conduct.webp"
+    src="https://raw.githubusercontent.com/kettei-sproutty/scuderia-fe/main/public/docs/docs-code-of-conduct.webp"
   >
 </p>
 
