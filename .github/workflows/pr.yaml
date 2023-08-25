@@ -13,7 +13,7 @@ jobs:
       - name: Check PR Title
         run: |
           REGEX="^(feat|fix|chore|docs|perf)(\([^)]+\))?: .+$"
-          PR_TITLE="feat(x) add"
+          PR_TITLE = ${{ github.event.pull_request.title }}
           if [[ ! $PR_TITLE =~ $REGEX ]]; then
             echo "ERROR"
             exit 1
