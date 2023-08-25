@@ -1,8 +1,8 @@
 import Button from "@components/button";
 import Input from "@components/input";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { verifyOtp } from "@lib/auth";
 import { cookies } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 type PageParms = {
   email?: string;
@@ -21,19 +21,17 @@ const VerifyOtpPage = async ({ searchParams }: VerifyOtpPageProps) => {
     const token = formData.get("token");
     if (!token) throw new Error("Token is required");
 
-    const supabase = createServerActionClient({ cookies });
-    const status = await supabase.auth.verifyOtp({
-      email: email,
-      type: "magiclink",
-      token: token.toString(),
+    await verifyOtp({
+      clientType: "server-component",
+      cookies,
+      otpParams: {
+        email: email,
+        type: "magiclink",
+        token: token.toString(),
+      },
     });
 
-    if (!status.data.session || !status.data.user) throw new Error("Invalid token");
-
-    await supabase.auth.setSession(status.data.session);
-    await supabase.auth.updateUser(status.data.user);
-
-    redirect("/coming-soon");
+    // TODO: Error Handling
   };
 
   return (

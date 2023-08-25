@@ -1,28 +1,31 @@
 {
   "extends": [
-      "next/core-web-vitals",
-      "plugin:tailwindcss/recommended",
-      "plugin:storybook/recommended",
-      "plugin:@typescript-eslint/recommended"
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
     ],
-    "parser": "@typescript-eslint/parser",
-    "rules": {
-      "no-unused-vars": [
-        "warn",
-        {
-          "argsIgnorePattern": "^_"
-        }
-      ],
-      "func-style": [
-        "warn",
-        "expression",
-        {
-          "allowArrowFunctions": true
-        }
-      ],
-      "complexity": [
-        "warn",
-        5
-      ]
-    }
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "func-style": [
+      "warn",
+      "expression",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
+    "complexity": ["warn", 5]
+  }
 }

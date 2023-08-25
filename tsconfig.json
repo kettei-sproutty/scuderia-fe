@@ -15,17 +15,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"]
+      "@components/*": ["components/*"],
+      "@lib/*": ["lib/*"],
+      "@utils/*": ["utils/*"]
     },
     "plugins": [{ "name": "next" }]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "prisma/seed.ts"],
   "exclude": ["node_modules"]
 }
