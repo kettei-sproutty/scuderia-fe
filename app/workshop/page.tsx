@@ -7,7 +7,6 @@ const WorkshopPage = async () => {
 
   const supabase = getSupabase("server-component", { cookies });
   const pastWorkshops = await supabase
-    // @ts-ignore
     .schema("workshop")
     .from("workshop")
     .select("*")
@@ -15,7 +14,6 @@ const WorkshopPage = async () => {
     .order("date", { ascending: false });
 
   const upcomingWorkshop = await supabase
-    // @ts-ignore
     .schema("workshop")
     .from("workshop")
     .select("*")
@@ -27,24 +25,24 @@ const WorkshopPage = async () => {
     <div>
       <h1>Upcoming Workshop</h1>
       {upcomingWorkshop.data ? (
-      <div>
-        <Link href={`/workshop/${upcomingWorkshop.data.id}`}>
-          {upcomingWorkshop.data.topic}
-        </Link>
-      </div>
-      ) : "No upcoming workshops"}
+        <div>
+          <Link href={`/workshop/${upcomingWorkshop.data.id}`}>{upcomingWorkshop.data.topic}</Link>
+        </div>
+      ) : (
+        "No upcoming workshops"
+      )}
       <h1>Past Workshops</h1>
-      {pastWorkshops.data?.length === 0 ? "No past workshops" : pastWorkshops.data?.map((workshop) => {
-        return (
-          <div key={workshop.id}>
-            <Link href={`/workshop/${workshop.id}`}>
-              {workshop.title}
-            </Link>
-          </div>
-        )
-      })}
+      {pastWorkshops.data?.length === 0
+        ? "No past workshops"
+        : pastWorkshops.data?.map((workshop) => {
+            return (
+              <div key={workshop.id}>
+                <Link href={`/workshop/${workshop.id}`}>{workshop.title}</Link>
+              </div>
+            );
+          })}
     </div>
-  )
-}
+  );
+};
 
 export default WorkshopPage;

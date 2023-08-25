@@ -26,10 +26,7 @@ interface IGetSupabase {
    * const supabase = getSupabase("server-component", { cookies });
    * ```
    */
-  (
-    clientType: "server-component",
-    context: CookiesContext,
-  ): ReturnType<typeof createServerComponentClient>;
+  (clientType: "server-component", context: CookiesContext): SupabaseClient;
   /**
    * Create a supabase client for React Server Components.
    * @argument {"middleware"} clientType - Where supabase will be used.
@@ -41,10 +38,7 @@ interface IGetSupabase {
    * const supabase = getSupabase("route-handler", { cookies });
    * ```
    */
-  (
-    clientType: "route-handler",
-    context: MiddlewareContext,
-  ): ReturnType<typeof createMiddlewareClient>;
+  (clientType: "route-handler", context: MiddlewareContext): SupabaseClient;
   /**
    * Create a supabase client for React Server Components.
    * @argument {"middleware"} clientType - Where supabase will be used.
@@ -58,7 +52,7 @@ interface IGetSupabase {
    * }
    * ```
    */
-  (clientType: "middleware", context: CookiesContext): ReturnType<typeof createRouteHandlerClient>;
+  (clientType: "middleware", context: CookiesContext): SupabaseClient;
 }
 
 /**
@@ -103,4 +97,8 @@ export const getUser: IGetUser = async (supabase, redirectOnGuest = false) => {
     console.error(error);
     redirect(AuthenticationRoutes.AUTHENTICATION_ROUTE);
   }
+};
+
+export const changeSchema = async (supabase: SupabaseClient, schema: string) => {
+  supabase.schema(schema);
 };

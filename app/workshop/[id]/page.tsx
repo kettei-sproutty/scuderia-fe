@@ -5,7 +5,6 @@ import { cookies } from "next/headers";
 const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   const supabase = getSupabase("server-component", { cookies });
   const workshop = await supabase
-    //@ts-ignore
     .schema("workshop")
     .from("workshop")
     .select("*")
@@ -13,7 +12,6 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
     .single();
 
   const hosts = await supabase
-    // @ts-ignore
     .schema("auth")
     .from("users")
     .select("email")
@@ -22,4 +20,4 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   return <pre>{JSON.stringify({ ...workshop.data, hosts: hosts.data }, null, 2)}</pre>;
 };
 
-export default WorkshopByIdPage
+export default WorkshopByIdPage;
