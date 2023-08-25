@@ -18,7 +18,7 @@ const Button = ({
   return (
     <button
       className={clsx(
-        "cursor-pointer justify-center rounded-sm",
+        "w-full cursor-pointer justify-center rounded-sm",
         {
           "border  bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 ":
             variant === "filled",
