@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: Check PR Title
         run: |
-          PR_TITLE = ${{ github.event.pull_request.title }}
+          PR_TITLE="feat(ci): add pr-title-check workflow"
           if [[ ! $PR_TITLE =~ ^(feat|fix|chore|perf)(\(.+\))?:\s.+ ]]; then
-            echo "Invalid PR title format. Please use one of the following formats: feat(ci): , fix: , chore: , perf: "
+            echo "Invalid PR title. Please, use commitlint prefixes."
             exit 1
           fi
+
