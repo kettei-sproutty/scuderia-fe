@@ -14,52 +14,22 @@
     "build-storybook": "storybook build"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged"
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx --no -- commitlint --edit ${1}"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts,tsx}": [
       "prettier --write --",
       "eslint --fix --"
     ],
-    "*.{js,cjs,mjs,ts,tsx,json,md,mdx,yaml,yml}": [
+    "*.{json,md,mdx,yaml,yml}": [
       "prettier --write --"
     ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals",
-      "plugin:tailwindcss/recommended",
-      "plugin:storybook/recommended"
-    ],
-    "rules": {
-      "no-unused-vars": [
-        "warn",
-        {
-          "argsIgnorePattern": "^_"
-        }
-      ],
-      "func-style": [
-        "warn",
-        "expression",
-        {
-          "allowArrowFunctions": true
-        }
-      ],
-      "complexity": [
-        "warn",
-        5
-      ]
-    }
   },
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.7.4",
     "@supabase/supabase-js": "^2.33.0",
     "framer-motion": "^10.16.1",
-    "next": "^13.4.19",
-    "@supabase/supabase-js": "^2.31.0",
-    "framer-motion": "^10.15.0",
-    "next": "^13.4.12",
-    "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
@@ -75,6 +45,12 @@
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.15",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@storybook/manager-api": "^7.3.2",
+    "@storybook/theming": "^7.3.2",
+    "@typescript-eslint/eslint-plugin": "^6.4.1",
+    "@typescript-eslint/parser": "^6.4.1",
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
