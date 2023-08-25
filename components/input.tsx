@@ -1,30 +1,40 @@
+import clsx from "clsx";
 import React from "react";
 
 type InputTextProps = {
-  label: string;
+  label?: string;
   error?: string;
+  //TODO define if we want variants with icons/prefixes/suffixes
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
-  ({ label, required, error, id, ...props }, ref) => (
-    <div>
-      <label htmlFor={id} className="text-sm font-medium  text-white focus-within:bg-indigo-600">
-        {label}
-        {required && <span>*</span>}
-      </label>
-      <div className="mt-2">
-        <div className="mt-2 flex items-center rounded-md border border-gray-300 bg-gray-100">
-          <input
-            type="text"
-            ref={ref}
-            className="flex w-full  border-0 bg-gray-600 px-1 py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0"
-            {...props}
-          />
+  ({ label, required, error, id, ...props }, ref) => {
+    return (
+      <div>
+        {label && (
+          <label htmlFor={id} className="text-xs text-primary-50 ">
+            {label}
+            {required && <span>*</span>}
+          </label>
+        )}
+        <div>
+          <div className=" flex items-center rounded-sm ">
+            <input
+              type="text"
+              ref={ref}
+              className={clsx(
+                "flex w-full rounded-sm border border-primary-100 bg-transparent px-2 py-1.5 text-sm  text-primary-100 hover:ring-1 hover:ring-primary-100 focus:outline-none focus:ring-1 focus:ring-primary-100 ",
+
+                { "border-2 border-error-light": error },
+              )}
+              {...props}
+            />
+          </div>
         </div>
+        {error && <span className={"text-sm font-semibold text-error-light"}>{error}</span>}
       </div>
-      {error && <span>{error}</span>}
-    </div>
-  ),
+    );
+  },
 );
 
 InputText.displayName = "InputTextComponent";
