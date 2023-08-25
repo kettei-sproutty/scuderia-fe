@@ -14,6 +14,8 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     children: { control: "text" },
+    variant: { options: ["filled", "outlined"], control: { type: "select" } },
+    size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof Button>;
 
@@ -21,8 +23,42 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Filled: Story = {
   args: {
     children: "Button",
+    variant: "filled",
+    size: "md",
+  },
+};
+
+export const Outlined: Story = {
+  args: {
+    children: "Button",
+    variant: "outlined",
+    size: "md",
+  },
+};
+
+export const Small: Story = {
+  args: {
+    children: "Button",
+    variant: "filled",
+    size: "sm",
+  },
+};
+
+export const Medium: Story = {
+  args: {
+    children: "Button",
+    variant: "filled",
+    size: "md",
+  },
+};
+
+export const Large: Story = {
+  args: {
+    children: "Button",
+    variant: "filled",
+    size: "lg",
   },
 };
