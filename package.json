@@ -26,7 +26,7 @@
     "*.{json,md,mdx,yaml,yml}": [
       "prettier --write --"
     ],
-    "*.{prisma}": [
+    "*.prisma": [
       "prisma format"
     ]
   },
