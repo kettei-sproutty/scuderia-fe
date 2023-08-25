@@ -8,8 +8,17 @@ import "../app/globals.css";
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "dark",
+    },
     docs: {
       theme: themes.dark,
+      values: [
+        {
+          name: "dark",
+          value: "#000000",
+        },
+      ],
     },
     actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
@@ -19,18 +28,6 @@ const preview: Preview = {
       },
     },
   },
-
-  decorators: [
-    // Adds theme switching support.
-    // NOTE: requires setting "darkMode" to "class" in your tailwind config
-    withThemeByClassName({
-      themes: {
-        light: "light",
-        dark: "dark",
-      },
-      defaultTheme: "light",
-    }),
-  ],
 };
 
 export default preview;

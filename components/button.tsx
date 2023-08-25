@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React from "react";
 
 type ButtonProps = {
-  variant?: "filled" | "outlined" | "accent";
+  variant?: "filled" | "outlined";
   size?: "sm" | "md" | "lg";
   extended?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -13,13 +13,12 @@ const Button = ({
   children,
   variant = "filled",
   size = "md",
-  extended = false,
   ...props
 }: Omit<ButtonProps, "className">) => {
   return (
     <button
       className={clsx(
-        "cursor-pointer justify-center rounded-sm",
+        "w-full cursor-pointer justify-center rounded-sm",
         {
           "border  bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 ":
             variant === "filled",
@@ -31,7 +30,6 @@ const Button = ({
         { "text-xs py-1.5 px-2  ": size === "sm" },
         { "text-sm py-2 px-2.5": size === "md" },
         { "text-md py-2.5 px-6": size === "lg" },
-        extended ? "max-w-full" : "max-w-fit",
       )}
       {...props}
     >
