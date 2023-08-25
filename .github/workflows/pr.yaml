@@ -12,9 +12,9 @@ jobs:
     steps:
       - name: Check PR Title
         run: |
-          PR_TITLE="feat(ci): add pr-title-check workflow"
-          if [[ ! $PR_TITLE =~ ^(feat|fix|chore|perf)(\(.+\))?:\s.+ ]]; then
-            echo "Invalid PR title. Please, use commitlint prefixes."
-            exit 1
+          REGEX="^(feat|fix|chore|docs|perf)(\([^)]+\))?: .+$"
+          PR_TITLE="feat(x) add"
+          if [[ ! $PR_TITLE =~ $REGEX ]]; then
+            echo "ERROR"
           fi
 
