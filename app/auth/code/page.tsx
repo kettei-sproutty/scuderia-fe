@@ -1,9 +1,8 @@
 import Button from "@components/button";
 import Input from "@components/input";
 import { verifyOtp } from "@lib/auth";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 type PageParms = {
   email?: string;
