@@ -13,7 +13,7 @@ jobs:
       - name: Check PR Title
         run: |
           PR_TITLE=$(git log --format=%s -1 ${{ github.event.pull_request.head.sha }})
-          if [[ ! $PR_TITLE =~ ^(feat|fix|chore|perf)\*: ]]; then
-            echo "Invalid PR title format. Please use one of the following formats: feat*: , fix*: , chore*: , perf*: "
+          if [[ ! $PR_TITLE =~ ^(feat|fix|chore|perf)(\(.+\))?:\s.+ ]]; then
+            echo "Invalid PR title format. Please use one of the following formats: feat(ci): , fix: , chore: , perf: "
             exit 1
           fi
