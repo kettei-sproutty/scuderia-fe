@@ -4,6 +4,7 @@ on:
     types:
       - opened
       - synchronize
+      - edited
 
 jobs:
   pr_title_check:
