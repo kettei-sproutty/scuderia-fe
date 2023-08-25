@@ -16,5 +16,6 @@ jobs:
           PR_TITLE="feat(x) add"
           if [[ ! $PR_TITLE =~ $REGEX ]]; then
             echo "ERROR"
+            exit 1
           fi
 
