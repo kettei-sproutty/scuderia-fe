@@ -96,12 +96,12 @@ Follow these steps to set up the Scuderia FE project on your system:
 - To start the Next.js application:
 
   ```sh
-     pnpm dev
+  pnpm dev
   ```
 
 - To launch the Storybook environment:
   ```sh
-    pnpm storybook
+  pnpm storybook
   ```
 
 <p align="center">

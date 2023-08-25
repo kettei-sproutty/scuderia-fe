@@ -1,23 +1,19 @@
 import type { PageProps as WorkshopByIdPageProps } from ".next/types/app/workshop/[id]/page";
-import { getSupabase } from "@lib/supabase";
+import { getUser } from "@lib/auth";
+import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 
 const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
-  const supabase = getSupabase("server-component", { cookies });
-  const workshop = await supabase
-    .schema("workshop")
-    .from("workshop")
-    .select("*")
-    .eq("id", params.id)
-    .single();
+  await getUser({ cookies, redirectOnGuest: true, clientType: "server-component" });
 
-  const hosts = await supabase
-    .schema("auth")
-    .from("users")
-    .select("email")
-    .in("id", workshop.data.hosts);
+  const client = new PrismaClient();
+  const workshop = await client.workshop.findUnique({
+    where: {
+      id: params.id,
+    },
+  });
 
-  return <pre>{JSON.stringify({ ...workshop.data, hosts: hosts.data }, null, 2)}</pre>;
+  return <pre>{JSON.stringify(workshop, null, 2)}</pre>;
 };
 
 export default WorkshopByIdPage;

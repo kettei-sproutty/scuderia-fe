@@ -1,8 +1,7 @@
 import Button from "@components/button";
 import Input from "@components/input";
 import { cookies } from "next/headers";
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
-import { redirect } from "next/navigation";
+import { signIn } from "@lib/auth";
 
 const LoginPage = () => {
   const loginAction = async (formData: FormData) => {
@@ -14,18 +13,17 @@ const LoginPage = () => {
       console.log("Not accenture email");
     }
 
-    const supabase = createServerActionClient({ cookies });
-    await supabase.auth.signInWithOtp({
-      email: email.toString(),
-      options: {
-        shouldCreateUser: true,
-        emailRedirectTo: "https:://www.scuderia-fe.com/auth/callback",
+    await signIn({
+      clientType: "server-component",
+      cookies,
+      credentials: {
+        email: email.toString(),
+        options: {
+          shouldCreateUser: true,
+          emailRedirectTo: "https:://www.scuderia-fe.com/auth/callback",
+        },
       },
     });
-
-    const searchParams = new URLSearchParams({ email: email.toString() });
-
-    redirect(`/auth/code?${searchParams.toString()}`);
   };
 
   return (

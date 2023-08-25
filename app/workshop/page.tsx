@@ -1,43 +1,50 @@
-import { getSupabase } from "@lib/supabase";
-import { cookies } from "next/headers";
+import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
 
 const WorkshopPage = async () => {
   const today = new Date().toISOString();
 
-  const supabase = getSupabase("server-component", { cookies });
-  const pastWorkshops = await supabase
-    .schema("workshop")
-    .from("workshop")
-    .select("*")
-    .lt("date", today)
-    .order("date", { ascending: false });
+  const client = new PrismaClient();
 
-  const upcomingWorkshop = await supabase
-    .schema("workshop")
-    .from("workshop")
-    .select("*")
-    .gte("date", today)
-    .order("date", { ascending: true })
-    .single();
+  const pastWorkshops = await client.workshop.findMany({
+    where: {
+      date: {
+        lt: today,
+      },
+    },
+    orderBy: {
+      date: "desc",
+    },
+  });
+
+  const upcomingWorkshop = await client.workshop.findFirst({
+    where: {
+      date: {
+        gt: today,
+      },
+    },
+    orderBy: {
+      date: "asc",
+    },
+  });
 
   return (
     <div>
       <h1>Upcoming Workshop</h1>
-      {upcomingWorkshop.data ? (
+      {upcomingWorkshop ? (
         <div>
-          <Link href={`/workshop/${upcomingWorkshop.data.id}`}>{upcomingWorkshop.data.topic}</Link>
+          <Link href={`/workshop/${upcomingWorkshop.id}`}>{upcomingWorkshop.topic}</Link>
         </div>
       ) : (
         "No upcoming workshops"
       )}
       <h1>Past Workshops</h1>
-      {pastWorkshops.data?.length === 0
+      {pastWorkshops.length === 0
         ? "No past workshops"
-        : pastWorkshops.data?.map((workshop) => {
+        : pastWorkshops.map((workshop) => {
             return (
               <div key={workshop.id}>
-                <Link href={`/workshop/${workshop.id}`}>{workshop.title}</Link>
+                <Link href={`/workshop/${workshop.id}`}>{workshop.topic}</Link>
               </div>
             );
           })}
