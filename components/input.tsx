@@ -5,11 +5,10 @@ type InputTextProps = {
   label?: string;
   error?: string;
   //TODO define if we want variants with icons/prefixes/suffixes
-  variant?: "outlined";
 } & React.InputHTMLAttributes<HTMLInputElement>;
 
 const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
-  ({ label, variant = "outlined", required, error, id, ...props }, ref) => {
+  ({ label, required, error, id, ...props }, ref) => {
     return (
       <div>
         {label && (
