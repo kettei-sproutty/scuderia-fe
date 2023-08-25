@@ -4,7 +4,7 @@ import clsx from "clsx";
 import React from "react";
 
 type ButtonProps = {
-  variant?: "filled" | "outlined" | "accent";
+  variant?: "filled" | "outlined";
   size?: "sm" | "md" | "lg";
   extended?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
@@ -13,7 +13,6 @@ const Button = ({
   children,
   variant = "filled",
   size = "md",
-  extended = false,
   ...props
 }: Omit<ButtonProps, "className">) => {
   return (
@@ -31,7 +30,6 @@ const Button = ({
         { "text-xs py-1.5 px-2  ": size === "sm" },
         { "text-sm py-2 px-2.5": size === "md" },
         { "text-md py-2.5 px-6": size === "lg" },
-        extended ? "max-w-full" : "max-w-fit",
       )}
       {...props}
     >
