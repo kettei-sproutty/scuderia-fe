@@ -30,3 +30,19 @@ export const Base: Story = {
     id: "field",
   },
 };
+
+export const Required: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    required: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    error: "Error message",
+  },
+};
