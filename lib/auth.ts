@@ -79,7 +79,11 @@ export const getUser = async ({ redirectOnGuest = true, ...authArgs }: GetUserAr
       });
     }
   } catch (error) {
-    console.error(error);
+    console.error("error", error);
+    if (authArgs.clientType === "middleware") {
+      return;
+    }
+
     redirect(AuthenticationRoutes.AUTHENTICATION_ROUTE);
   }
 };
@@ -99,10 +103,16 @@ export const signIn = async ({ credentials, ...authArgs }: SignInArgs) => {
   redirect(`/auth/code`);
 };
 
-export const signOut = (authArgs: SupabaseAuth) => {
+type SignOutArgs = SupabaseAuth & {
+  isMiddleware: boolean;
+};
+
+export const signOut = async ({ isMiddleware = false, ...authArgs }: SignOutArgs) => {
   const supabase = getSupabase(authArgs);
-  supabase.auth.signOut();
-  redirect(AuthenticationRoutes.AUTHENTICATION_ROUTE);
+  await supabase.auth.signOut();
+  if (!isMiddleware) {
+    redirect(AuthenticationRoutes.AUTHENTICATION_ROUTE);
+  }
 };
 
 type VerifyOtpArgs = SupabaseAuth & {
@@ -122,4 +132,19 @@ export const verifyOtp = async ({ otpParams, ...authArgs }: VerifyOtpArgs) => {
   supabase.auth.updateUser(data.user);
 
   redirect("/");
+};
+
+type VerifyCallbackArgs = SupabaseAuth & {
+  code: string;
+};
+
+export const verifyCallback = async ({ code, ...authArgs }: VerifyCallbackArgs) => {
+  const supabase = getSupabase(authArgs);
+  const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+  if (error || !data.user || !data.session) {
+    throw new Error("Invalid code");
+  }
+
+  supabase.auth.setSession(data.session);
+  supabase.auth.updateUser(data.user);
 };
