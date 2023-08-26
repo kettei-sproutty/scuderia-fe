@@ -1,40 +1,26 @@
+import { authentication } from "@lib/authentication";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getUser, signOut } from "./lib/auth";
 
-export const middleware = async (request: NextRequest) => {
-  const user = await getUser({
-    req: request,
-    res: NextResponse.next(),
-    clientType: "middleware",
-    redirectOnGuest: false,
-  });
+const authMiddleware = async (req: NextRequest) => {
+  console.log("Hello");
+  const authHelper = authentication("middleware", req, NextResponse.next());
+  const redirectUrl = new URL("/auth", req.url);
 
-  if (!user) {
-    // see https://github.com/supabase/auth-helpers/issues/436
-    await signOut({
-      req: request,
-      res: NextResponse.next(),
-      clientType: "middleware",
-      isMiddleware: true,
-    });
+  try {
+    const user = await authHelper.getUser();
+
+    if (!user) return NextResponse.redirect(redirectUrl);
+
+    return NextResponse.next();
+  } catch (error) {
+    await authHelper.signOut();
+    return NextResponse.redirect(redirectUrl);
   }
-
-  if (request.url.startsWith("/auth")) {
-    if (!user) {
-      return NextResponse.next();
-    } else {
-      return NextResponse.redirect(new URL("/", request.url));
-    }
-  }
-
-  if (!user) {
-    return NextResponse.redirect(new URL("/auth", request.url));
-  }
-
-  return NextResponse.next();
 };
 
 export const config = {
-  matcher: "/((?!auth).*)",
+  matcher: ["/", "/workshop/:path*"],
 };
+
+export default authMiddleware;

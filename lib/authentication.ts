@@ -9,38 +9,28 @@ import type { SignInWithPasswordlessCredentials, VerifyOtpParams } from "@supaba
 import { cookies as Cookies } from "next/headers";
 import type { NextRequest, NextResponse } from "next/server";
 
-enum ClientType {
-  MIDDLEWARE = "middleware",
-  RSC = "rsc",
-  ROUTE_HANDLER = "route-handler",
-}
+type ClientType = "middleware" | "rsc" | "route-handler";
 
 type Authentication = {
+  (clientType: "route-handler", cookies: typeof Cookies): ReturnType<typeof authenticationHelper>;
+  (clientType: "rsc", cookies: typeof Cookies): ReturnType<typeof authenticationHelper>;
   (
-    clientType: ClientType.ROUTE_HANDLER | "route-handler",
-    cookies: typeof Cookies,
-  ): ReturnType<typeof authenticationHelper>;
-  (
-    clientType: ClientType.RSC | "rsc",
-    cookies: typeof Cookies,
-  ): ReturnType<typeof authenticationHelper>;
-  (
-    clientType: ClientType.MIDDLEWARE | "middleware",
+    clientType: "middleware",
     req: NextRequest,
     res: NextResponse,
   ): ReturnType<typeof authenticationHelper>;
 };
 
-export const authentication: Authentication = (clientType, ...other: unknown[]) => {
-  if (clientType === ClientType.MIDDLEWARE) {
+export const authentication: Authentication = (clientType: ClientType, ...other: unknown[]) => {
+  if (clientType === "middleware") {
     const [req, res] = other as [NextRequest, NextResponse];
     const supabase = createMiddlewareClient({ req, res });
     return authenticationHelper(supabase);
-  } else if (clientType === ClientType.RSC) {
+  } else if (clientType === "rsc") {
     const [cookies] = other as [typeof Cookies];
     const supabase = createServerComponentClient({ cookies });
     return authenticationHelper(supabase);
-  } else if (clientType === ClientType.ROUTE_HANDLER) {
+  } else if (clientType === "route-handler") {
     const [cookies] = other as [typeof Cookies];
     const supabase = createRouteHandlerClient({ cookies });
     return authenticationHelper(supabase);
@@ -57,7 +47,13 @@ const authenticationHelper = (supabase: SupabaseClient) => {
 
   const verifyOtp = async (params: VerifyOtpParams) => await supabase.auth.verifyOtp(params);
 
-  const verifyCallback = async (code: string) => await supabase.auth.exchangeCodeForSession(code);
+  const verifyCallback = async (code: string) => {
+    const { data } = await supabase.auth.exchangeCodeForSession(code);
+    if (!data.user || !data.session) throw new Error("Invalid code");
+
+    await supabase.auth.setSession(data.session);
+    await supabase.auth.updateUser(data.user);
+  };
 
   const getUser = async () => {
     const { data } = await supabase.auth.getUser();
