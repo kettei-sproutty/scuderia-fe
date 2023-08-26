@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import React from "react";
+import React, { ReactNode } from "react";
 
 type InputTextProps = {
   label: string;
   error?: string;
   id: string;
-  suffix?: string;
+  suffix?: ReactNode;
   size?: "sm" | "md" | "lg";
   //TODO define if we want variants with icons/prefixes/suffixes
 } & React.InputHTMLAttributes<HTMLInputElement>;
