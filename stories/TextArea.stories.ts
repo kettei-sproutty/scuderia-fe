@@ -16,6 +16,7 @@ const meta = {
     label: { control: "text" },
     required: { control: "boolean" },
     error: { control: "text" },
+    size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof TextArea>;
 

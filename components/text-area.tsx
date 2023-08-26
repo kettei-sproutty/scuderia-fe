@@ -1,31 +1,40 @@
+import clsx from "clsx";
 import React, { forwardRef } from "react";
 
 type TextAreaProps = {
   label: string;
   error?: string;
   id: string;
+  size?: "sm" | "md" | "lg";
 } & React.InputHTMLAttributes<HTMLTextAreaElement>;
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ label, placeholder, required, value, error, id, onChange }, ref) => {
+  ({ label, placeholder, required, value, error, id, size, onChange }, ref) => {
     return (
-      <div>
-        <label htmlFor={id} className="text-sm font-medium  text-white focus-within:bg-indigo-600">
+      <div
+        className={clsx(
+          "flex w-full flex-col text-primary-100",
+          { "text-xs": size === "sm" },
+          { "text-sm": size === "md" },
+          { "text-md": size === "lg" },
+        )}
+      >
+        <label htmlFor={id}>
           {label}
           {required && <span>*</span>}
         </label>
-        <div className="mt-2">
-          <div className="mt-2 flex items-center rounded-md border border-gray-300 bg-gray-100">
-            <textarea
-              className="rounded-lg border border-gray-300 bg-transparent p-2"
-              placeholder={placeholder}
-              value={value}
-              id={id}
-              onChange={onChange}
-              ref={ref}
-            />
-          </div>
-        </div>
-        {error && <span>{error}</span>}
+        <textarea
+          className={clsx(
+            "my-1 rounded-sm border bg-transparent p-2 hover:ring-2 hover:ring-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-100",
+            { "border-2 border-error-light": error },
+            { "border border-primary-100 ": !error },
+          )}
+          placeholder={placeholder}
+          value={value}
+          id={id}
+          onChange={onChange}
+          ref={ref}
+        />
+        {error && <span className="font-semibold text-error-light">{error}</span>}
       </div>
     );
   },
