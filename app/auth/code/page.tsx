@@ -36,7 +36,7 @@ const VerifyOtpPage = async ({ searchParams }: VerifyOtpPageProps) => {
 
   return (
     <form action={loginAction}>
-      <Input required min="6" max="6" name="token" label="token" />
+      <Input required min="6" max="6" name="token" label="token" id="token" />
       <Button type="submit">Login</Button>
     </form>
   );

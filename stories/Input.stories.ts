@@ -15,7 +15,9 @@ const meta = {
   argTypes: {
     label: { control: "text" },
     required: { control: "boolean" },
+    suffix: { control: "text" },
     error: { control: "text" },
+    size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof Input>;
 
@@ -26,5 +28,30 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "Field",
+    id: "field",
+  },
+};
+
+export const Required: Story = {
+  args: {
+    label: "Field",
+    required: true,
+    id: "field",
+  },
+};
+
+export const Suffix: Story = {
+  args: {
+    label: "Mail",
+    suffix: "@gmail.com",
+    id: "mail",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    error: "Error message",
   },
 };
