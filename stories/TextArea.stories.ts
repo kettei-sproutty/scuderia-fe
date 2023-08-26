@@ -16,6 +16,7 @@ const meta = {
     label: { control: "text" },
     required: { control: "boolean" },
     error: { control: "text" },
+    size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof TextArea>;
 
@@ -27,5 +28,21 @@ export const Base: Story = {
   args: {
     label: "Field",
     id: "field",
+  },
+};
+
+export const Required: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    required: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    error: "Error message",
   },
 };
