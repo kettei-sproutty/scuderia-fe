@@ -1,14 +1,14 @@
-// import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-// import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import { getUser } from "lib/auth";
 
 const HomePage = async () => {
-  // const supabase = createServerComponentClient({ cookies });
-  // const { data: userData } = await supabase.auth.getUser();
+  const user = await getUser({ clientType: "server-component", cookies, redirectOnGuest: true });
 
-  redirect("/coming-soon");
-
-  return <div>{/* <pre>{JSON.stringify(userData.user, undefined, "\t")}</pre> */}</div>;
+  return (
+    <div>
+      <pre>{JSON.stringify(user, undefined, "\t")}</pre>
+    </div>
+  );
 };
 
 export default HomePage;

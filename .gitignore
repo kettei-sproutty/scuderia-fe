@@ -3,6 +3,11 @@ node_modules
 .pnp
 .pnp.js
 
+# Lockfiles
+package-lock.json
+yarn.lock
+bun.lockb
+
 # Next
 .next
 out
@@ -22,3 +27,6 @@ next-env.d.ts
 
 # Webstorm
 .idea
+
+# Visual Studio Code
+.vscode
