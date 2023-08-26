@@ -15,7 +15,9 @@ const meta = {
   argTypes: {
     label: { control: "text" },
     required: { control: "boolean" },
+    suffix: { control: "text" },
     error: { control: "text" },
+    size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof Input>;
 
