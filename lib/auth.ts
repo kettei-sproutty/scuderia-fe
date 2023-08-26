@@ -94,13 +94,10 @@ type SignInArgs = SupabaseAuth & {
 
 export const signIn = async ({ credentials, ...authArgs }: SignInArgs) => {
   const supabase = getSupabase(authArgs);
-  const { error } = await supabase.auth.signInWithOtp(credentials);
+  const { data, error } = await supabase.auth.signInWithOtp(credentials);
   if (error) {
-    // TODO: Handle error
-    return;
+    throw new Error(error.message);
   }
-
-  redirect(`/auth/code`);
 };
 
 type SignOutArgs = SupabaseAuth & {
