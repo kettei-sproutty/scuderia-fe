@@ -26,5 +26,6 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "Field",
+    id: "field",
   },
 };

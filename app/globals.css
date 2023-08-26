@@ -9,3 +9,9 @@
     src: url("../public/fonts/ferro-rosso.regular.ttf") format("truetype");
   }
 }
+
+@layer components {
+  .input-text-label {
+    @apply flex items-center justify-center bg-primary-950 px-2 text-primary-100;
+  }
+}

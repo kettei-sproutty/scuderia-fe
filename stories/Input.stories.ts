@@ -28,6 +28,30 @@ type Story = StoryObj<typeof meta>;
 export const Base: Story = {
   args: {
     label: "Field",
-    id: "prova",
+    id: "field",
+  },
+};
+
+export const Required: Story = {
+  args: {
+    label: "Field",
+    required: true,
+    id: "field",
+  },
+};
+
+export const Suffix: Story = {
+  args: {
+    label: "Mail",
+    suffix: "@gmail.com",
+    id: "mail",
+  },
+};
+
+export const Error: Story = {
+  args: {
+    label: "Field",
+    id: "field",
+    error: "Error message",
   },
 };
