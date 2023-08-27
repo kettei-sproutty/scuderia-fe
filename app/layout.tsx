@@ -1,10 +1,13 @@
 import "./globals.css";
 import type { PropsWithChildren, ReactElement } from "react";
 import type { Metadata } from "next";
+import { Exo } from "next/font/google";
 
 export const dynamic = "force-dynamic";
 
 const url = new URL("https://www.scuderia-fe.com");
+
+const exo = Exo({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: url,
@@ -48,7 +51,7 @@ const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
       <body className={" flex h-screen flex-1  flex-col px-6 py-8 "}>
-        <main className={"my-auto h-48"}>{children}</main>
+        <main className={exo.className}>{children}</main>
       </body>
     </html>
   );
