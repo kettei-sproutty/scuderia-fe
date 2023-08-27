@@ -11,7 +11,7 @@ const AuthPage = () => {
     case Step.Email:
       return <EmailStep setEmail={setEmail} setStep={setStep} />;
     case Step.Code:
-      return <CodeStep email={email} setStep={setStep} />;
+      return <CodeStep email={email} />;
     default:
       notFound();
   }
