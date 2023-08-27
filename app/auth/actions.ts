@@ -1,6 +1,7 @@
 "use server";
 import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const sendOTPEmail = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
@@ -15,15 +16,23 @@ export const sendOTPEmail = async (formData: FormData) => {
   }
 };
 
-export const verifyOTP = async (formData: FormData) => {
+export const verifyOTP = async (formData: FormData, email: string) => {
   const code = formData.get("code")?.toString();
-  const email = formData.get("email")?.toString();
 
   if (!code || !email) throw new Error("Code is required");
 
   const authenticationHelper = authentication("route-handler", cookies);
   try {
-    await authenticationHelper.verifyOtp({ token: code, type: "email", email });
+    const { data } = await authenticationHelper.verifyOtp({
+      token: code,
+      type: "email",
+      email,
+    });
+
+    if (!data.user || !data.session) throw new Error("Failed to verify OTP");
+
+    await authenticationHelper.updateSession({ user: data.user, session: data.session });
+    redirect("/");
   } catch (error) {
     console.error(error);
     throw new Error("Failed to verify OTP");

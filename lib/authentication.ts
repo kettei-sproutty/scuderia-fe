@@ -4,7 +4,7 @@ import {
   createRouteHandlerClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Session, SupabaseClient, User } from "@supabase/supabase-js";
 import type { SignInWithPasswordlessCredentials, VerifyOtpParams } from "@supabase/supabase-js";
 import { cookies as Cookies } from "next/headers";
 import type { NextRequest, NextResponse } from "next/server";
@@ -75,11 +75,17 @@ const authenticationHelper = (supabase: SupabaseClient) => {
     return user;
   };
 
+  const updateSession = async ({ user, session }: { user: User; session: Session }) => {
+    await supabase.auth.setSession(session);
+    await supabase.auth.updateUser(user);
+  };
+
   return {
     signIn,
     signOut,
     getUser,
     verifyCallback,
     verifyOtp,
+    updateSession,
   };
 };
