@@ -1,5 +1,6 @@
 "use client";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import type { Dispatch, SetStateAction } from "react";
 import Button from "@components/button";
 import InputText from "@components/input";
 import { sendOTPEmail, verifyOTP } from "./actions";
@@ -11,8 +12,8 @@ export enum Step {
 }
 
 export type EmailStepProps = {
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setStep: React.Dispatch<React.SetStateAction<Step>>;
+  setEmail: Dispatch<SetStateAction<string>>;
+  setStep: Dispatch<SetStateAction<Step>>;
 };
 
 export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
@@ -45,7 +46,6 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
 
 export type CodeStepProps = {
   email: string;
-  setStep: React.Dispatch<React.SetStateAction<Step>>;
 };
 
 export const CodeStep = ({ email }: CodeStepProps) => {
