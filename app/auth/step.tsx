@@ -2,9 +2,13 @@
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
 import Button from "@components/button";
 import InputText from "@components/input";
-import { Step } from "./page";
 import { sendOTPEmail, verifyOTP } from "./actions";
 import { redirect } from "next/navigation";
+
+export enum Step {
+  Email,
+  Code,
+}
 
 export type EmailStepProps = {
   setEmail: React.Dispatch<React.SetStateAction<string>>;

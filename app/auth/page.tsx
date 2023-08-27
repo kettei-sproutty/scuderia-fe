@@ -1,12 +1,7 @@
 "use client";
 import { useState } from "react";
 import { notFound } from "next/navigation";
-import { CodeStep, EmailStep } from "./step";
-
-export enum Step {
-  Email,
-  Code,
-}
+import { Step, CodeStep, EmailStep } from "./step";
 
 const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
