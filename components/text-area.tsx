@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@utils/cn";
 import React, { forwardRef } from "react";
 
 type TextAreaProps = {
@@ -11,7 +11,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ label, placeholder, required, value, error, id, size, onChange }, ref) => {
     return (
       <div
-        className={clsx(
+        className={cn(
           "flex w-full flex-col text-primary-100",
           { "text-xs": size === "sm" },
           { "text-sm": size === "md" },
@@ -23,10 +23,9 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
           {required && <span>*</span>}
         </label>
         <textarea
-          className={clsx(
-            "my-1 rounded-sm border bg-transparent p-2 hover:ring-2 hover:ring-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-100",
+          className={cn(
+            "my-1 rounded-sm border bg-transparent p-2 hover:ring-2 border-primary-100 hover:ring-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-100",
             { "border-2 border-error-light": error },
-            { "border border-primary-100 ": !error },
           )}
           placeholder={placeholder}
           value={value}

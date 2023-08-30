@@ -1,6 +1,6 @@
+import { cn } from "@utils/cn";
 import type { ButtonHTMLAttributes } from "react";
 
-import clsx from "clsx";
 import React from "react";
 
 type ButtonProps = {
@@ -16,7 +16,7 @@ const Button = ({
 }: Omit<ButtonProps, "className">) => {
   return (
     <button
-      className={clsx(
+      className={cn(
         "w-full cursor-pointer justify-center rounded-sm",
         {
           "border  bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 ":

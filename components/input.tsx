@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@utils/cn";
 import React, { ReactNode } from "react";
 
 type InputTextProps = {
@@ -14,7 +14,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
   ({ label, required, error, id, suffix, size = "md", ...props }, ref) => {
     return (
       <div
-        className={clsx(
+        className={cn(
           "flex w-full flex-col",
           { "text-xs": size === "sm" },
           { "text-sm": size === "md" },
@@ -22,10 +22,9 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
         )}
       >
         <div
-          className={clsx(
-            "relative grid w-full grid-cols-[minmax(25%,auto)_1fr] rounded-sm text-primary-100 focus-within:ring-2 focus-within:ring-primary-100 hover:ring-2 hover:ring-primary-100 focus:outline-none",
+          className={cn(
+            "relative grid w-full grid-cols-[minmax(25%,auto)_1fr] border border-primary-100 rounded-sm text-primary-100 focus-within:ring-2 focus-within:ring-primary-100 hover:ring-2 hover:ring-primary-100 focus:outline-none",
             { "border-2 border-error-light": error },
-            { "border border-primary-100 ": !error },
             { "grid-cols-[minmax(25%,auto)_1fr]": !suffix },
             { "grid-cols-[minmax(25%,auto)_1fr_minmax(25%,auto)]": suffix },
           )}
