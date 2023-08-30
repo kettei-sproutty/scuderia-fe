@@ -7,9 +7,8 @@ const authMiddleware = async (req: NextRequest) => {
   const redirectUrl = new URL("/auth", req.url);
 
   try {
-    const user = await authHelper.getUser();
-
-    if (!user) return NextResponse.redirect(redirectUrl);
+    const status = await authHelper.checkSession();
+    if (!status) return NextResponse.redirect(redirectUrl);
 
     return NextResponse.next();
   } catch (error) {

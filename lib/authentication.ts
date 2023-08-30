@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import {
   createMiddlewareClient,
   createRouteHandlerClient,
+  createServerActionClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
 import type { Session, SupabaseClient, User } from "@supabase/supabase-js";
@@ -9,11 +10,12 @@ import type { SignInWithPasswordlessCredentials, VerifyOtpParams } from "@supaba
 import { cookies as Cookies } from "next/headers";
 import type { NextRequest, NextResponse } from "next/server";
 
-type ClientType = "middleware" | "rsc" | "route-handler";
+type ClientType = "middleware" | "rsc" | "route-handler" | "server-action";
 
 type Authentication = {
   (clientType: "route-handler", cookies: typeof Cookies): ReturnType<typeof authenticationHelper>;
   (clientType: "rsc", cookies: typeof Cookies): ReturnType<typeof authenticationHelper>;
+  (clientType: "server-action", cookies: typeof Cookies): ReturnType<typeof authenticationHelper>;
   (
     clientType: "middleware",
     req: NextRequest,
@@ -33,6 +35,10 @@ export const authentication: Authentication = (clientType: ClientType, ...other:
   } else if (clientType === "route-handler") {
     const [cookies] = other as [typeof Cookies];
     const supabase = createRouteHandlerClient({ cookies });
+    return authenticationHelper(supabase);
+  } else if (clientType === "server-action") {
+    const [cookies] = other as [typeof Cookies];
+    const supabase = createServerActionClient({ cookies });
     return authenticationHelper(supabase);
   } else {
     throw new Error("Invalid client type");
@@ -55,35 +61,54 @@ const authenticationHelper = (supabase: SupabaseClient) => {
     await supabase.auth.updateUser(data.user);
   };
 
+  const checkSession = async () => {
+    const session = await supabase.auth.getSession();
+    const user = await supabase.auth.getUser();
+    return session && user;
+  };
+
   const getUser = async () => {
-    const { data } = await supabase.auth.getUser();
-    if (!data.user) throw new Error("User not found");
+    try {
+      const { data } = await supabase.auth.getUser();
+      if (!data.user) throw new Error("User not found");
 
-    const prisma = new PrismaClient();
-    const profile = await prisma.profile.findUnique({
-      where: { email: data.user.email },
-    });
+      const prisma = new PrismaClient();
+      const profile = await prisma.profile.findUnique({
+        where: { email: data.user.email },
+      });
 
-    if (profile) return profile;
+      if (profile) return profile;
 
-    const user = await prisma.profile.create({
-      data: {
-        email: data.user.email!,
-      },
-    });
+      const user = await prisma.profile.create({
+        data: {
+          email: data.user.email!,
+        },
+      });
 
-    return user;
+      return user;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to get user");
+    }
   };
 
   const updateSession = async ({ user, session }: { user: User; session: Session }) => {
-    await supabase.auth.setSession(session);
-    await supabase.auth.updateUser(user);
+    try {
+      await supabase.auth.setSession(session);
+      await supabase.auth.updateUser(user);
+      console.log(">>> UPDATE SESSION <<< - SUCCESS");
+      return true;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Failed to update session");
+    }
   };
 
   return {
     signIn,
     signOut,
     getUser,
+    checkSession,
     verifyCallback,
     verifyOtp,
     updateSession,
