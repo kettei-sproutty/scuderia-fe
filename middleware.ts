@@ -3,17 +3,16 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const authMiddleware = async (req: NextRequest) => {
-  const authHelper = authentication("middleware", req, NextResponse.next());
   const redirectUrl = new URL("/auth", req.url);
 
   try {
+    const authHelper = authentication("middleware", req, NextResponse.next());
+
     const status = await authHelper.checkSession();
     if (!status) return NextResponse.redirect(redirectUrl);
 
     return NextResponse.next();
   } catch (error) {
-    // see https://github.com/supabase/auth-helpers/issues/436
-    await authHelper.signOut().catch(() => null);
     return NextResponse.redirect(redirectUrl);
   }
 };
