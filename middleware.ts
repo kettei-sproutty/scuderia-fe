@@ -12,7 +12,8 @@ const authMiddleware = async (req: NextRequest) => {
 
     return NextResponse.next();
   } catch (error) {
-    await authHelper.signOut();
+    // see https://github.com/supabase/auth-helpers/issues/436
+    await authHelper.signOut().catch(() => null);
     return NextResponse.redirect(redirectUrl);
   }
 };
