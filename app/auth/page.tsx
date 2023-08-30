@@ -1,44 +1,20 @@
-import Button from "@components/button";
-import Input from "@components/input";
-import { cookies } from "next/headers";
-import { signIn } from "@lib/auth";
+"use client";
+import { useState } from "react";
+import { notFound } from "next/navigation";
+import { Step, CodeStep, EmailStep } from "./step";
 
-const LoginPage = () => {
-  const loginAction = async (formData: FormData) => {
-    "use server";
-    const email = formData.get("email");
-    if (!email) throw new Error("Email is required");
-    if (!email.toString().endsWith("@accenture.com")) {
-      // TODO: Show error message
-      console.log("Not accenture email");
-    }
+const AuthPage = () => {
+  const [email, setEmail] = useState<string>("");
+  const [step, setStep] = useState<Step>(Step.Email);
 
-    await signIn({
-      clientType: "server-component",
-      cookies,
-      credentials: {
-        email: email.toString(),
-        options: {
-          shouldCreateUser: true,
-          emailRedirectTo: "https:://www.scuderia-fe.com/auth/callback",
-        },
-      },
-    });
-  };
-
-  return (
-    <form action={loginAction} className={"m-auto h-44 w-1/3 rounded px-4 "}>
-      <Input
-        required
-        type="email"
-        name="email"
-        label="email"
-        className={" h-12 text-gray-900 "}
-        id="mail"
-      />
-      <Button type="submit">Login</Button>
-    </form>
-  );
+  switch (step) {
+    case Step.Email:
+      return <EmailStep setEmail={setEmail} setStep={setStep} />;
+    case Step.Code:
+      return <CodeStep email={email} />;
+    default:
+      notFound();
+  }
 };
 
-export default LoginPage;
+export default AuthPage;
