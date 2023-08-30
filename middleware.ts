@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 const authMiddleware = async (req: NextRequest) => {
-  console.log("Hello");
   const authHelper = authentication("middleware", req, NextResponse.next());
   const redirectUrl = new URL("/auth", req.url);
 
