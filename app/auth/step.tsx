@@ -4,7 +4,7 @@ import type { Dispatch, SetStateAction } from "react";
 import Button from "@components/button";
 import InputText from "@components/input";
 import { sendOTPEmail, verifyOTP } from "./actions";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export enum Step {
   Email,
@@ -29,6 +29,7 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
       setEmail(email.toString());
       setStep(Step.Code);
     } catch (error) {
+      console.error(">>> SEND OTP <<< ERROR", error);
       // TODO: handle error
       return;
     }
@@ -50,6 +51,7 @@ export type CodeStepProps = {
 
 export const CodeStep = ({ email }: CodeStepProps) => {
   const { pending } = useFormStatus();
+  const router = useRouter();
 
   const verifyOtp = async (formData: FormData) => {
     try {
@@ -57,7 +59,7 @@ export const CodeStep = ({ email }: CodeStepProps) => {
       if (!code) throw { message: "code is required" };
 
       await verifyOTP(formData, email);
-      redirect("/");
+      router.push("/");
     } catch (error) {
       // TODO: handle error
       console.error(">>> VERIFY OTP <<< ERROR", error);
