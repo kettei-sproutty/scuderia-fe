@@ -21,6 +21,8 @@ jobs:
         with:
           node-version: "18.x"
           cache: "pnpm"
+      - name: Install CI deps
+        run: pnpm install -D
       - name: Check PR Title
         run: |
           PR_TITLE="${{ github.event.pull_request.title }}"
