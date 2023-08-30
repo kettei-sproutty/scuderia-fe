@@ -1,8 +1,6 @@
 "use server";
 import { authentication } from "@lib/authentication";
-import { RedirectType } from "next/dist/client/components/redirect";
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 
 export const sendOTPEmail = async (formData: FormData) => {
   const email = formData.get("email")?.toString();
