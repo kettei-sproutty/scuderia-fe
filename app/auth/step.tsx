@@ -60,6 +60,7 @@ export const CodeStep = ({ email }: CodeStepProps) => {
       redirect("/");
     } catch (error) {
       // TODO: handle error
+      console.error(">>> VERIFY OTP <<< ERROR", error);
       return;
     }
   };
