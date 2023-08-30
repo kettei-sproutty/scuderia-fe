@@ -8,6 +8,7 @@ import {
 import type { Session, SupabaseClient, User } from "@supabase/supabase-js";
 import type { SignInWithPasswordlessCredentials, VerifyOtpParams } from "@supabase/supabase-js";
 import { cookies as Cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import type { NextRequest, NextResponse } from "next/server";
 
 type ClientType = "middleware" | "rsc" | "route-handler" | "server-action";
@@ -62,15 +63,26 @@ const authenticationHelper = (supabase: SupabaseClient) => {
   };
 
   const checkSession = async () => {
-    const session = await supabase.auth.getSession();
-    const user = await supabase.auth.getUser();
-    return session && user;
+    try {
+      const { data: sessionData } = await supabase.auth.getSession();
+
+      const isSessionExpired = (sessionData?.session?.expires_in || 0) <= 0;
+
+      if (isSessionExpired) {
+        await signOut();
+        return false;
+      }
+
+      return !!sessionData.session;
+    } catch (error) {
+      return false;
+    }
   };
 
   const getUser = async () => {
     try {
       const { data } = await supabase.auth.getUser();
-      if (!data.user) throw new Error("User not found");
+      if (!data.user || !data.user.email) throw new Error("User not found");
 
       const prisma = new PrismaClient();
       const profile = await prisma.profile.findUnique({
@@ -81,14 +93,14 @@ const authenticationHelper = (supabase: SupabaseClient) => {
 
       const user = await prisma.profile.create({
         data: {
-          email: data.user.email!,
+          email: data.user.email,
         },
       });
 
       return user;
     } catch (error) {
       console.error(error);
-      throw new Error("Failed to get user");
+      redirect("/auth");
     }
   };
 
@@ -96,11 +108,8 @@ const authenticationHelper = (supabase: SupabaseClient) => {
     try {
       await supabase.auth.setSession(session);
       await supabase.auth.updateUser(user);
-      console.log(">>> UPDATE SESSION <<< - SUCCESS");
-      return true;
     } catch (error) {
       console.error(error);
-      throw new Error("Failed to update session");
     }
   };
 

@@ -1,12 +1,12 @@
-"use client";
-import { useEffect } from "react";
+import Link from "next/link";
 
 const NotFoundPage = () => {
-  useEffect(() => {
-    window.location.replace("https://www.scuderia-fe.com/coming-soon");
-  }, []);
-
-  return <></>;
+  return (
+    <section>
+      <h1>404 - Page Not Found</h1>
+      <Link href="/">Go Home</Link>
+    </section>
+  );
 };
 
 export default NotFoundPage;
