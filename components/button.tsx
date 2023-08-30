@@ -6,7 +6,6 @@ import React from "react";
 type ButtonProps = {
   variant?: "filled" | "outlined";
   size?: "sm" | "md" | "lg";
-  extended?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const Button = ({
