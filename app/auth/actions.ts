@@ -29,12 +29,13 @@ export const verifyOTP = async (formData: FormData, email: string) => {
       email,
     });
 
+    console.log(">>> SUCCESS <<< verify OTP", data);
+
     if (!data.user || !data.session) throw new Error("Failed to verify OTP");
 
     await authenticationHelper.updateSession({ user: data.user, session: data.session });
-    redirect("/");
   } catch (error) {
-    console.error(error);
+    console.log(">>> ERROR <<< verify OTP", error);
     throw new Error("Failed to verify OTP");
   }
 };
