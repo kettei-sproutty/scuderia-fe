@@ -1,5 +1,6 @@
 "use server";
 import { authentication } from "@lib/authentication";
+import { getURL } from "@lib/url";
 import { cookies } from "next/headers";
 
 export const sendOTPEmail = async (formData: FormData) => {
@@ -8,7 +9,14 @@ export const sendOTPEmail = async (formData: FormData) => {
 
   const authenticationHelper = authentication("server-action", cookies);
   try {
-    const { data, error } = await authenticationHelper.signIn({ email });
+    const emailRedirectTo = getURL("auth/callback");
+
+    const { data, error } = await authenticationHelper.signIn({
+      email,
+      options: {
+        emailRedirectTo,
+      },
+    });
     if (error) throw error;
 
     return data;
@@ -38,7 +46,7 @@ export const verifyOTP = async (formData: FormData, email: string) => {
       session: data.session,
     });
   } catch (error) {
-    console.log(">>> ERROR <<< verify OTP", error);
+    console.log(error);
     throw new Error("Failed to verify OTP");
   }
 };

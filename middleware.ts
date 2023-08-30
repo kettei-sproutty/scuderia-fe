@@ -1,6 +1,5 @@
 import { authentication } from "@lib/authentication";
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 const authMiddleware = async (req: NextRequest) => {
   const redirectUrl = new URL("/auth", req.url);
