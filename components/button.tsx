@@ -28,7 +28,13 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof
 
 const Button = ({ children, variant, size, ...props }: Omit<ButtonProps, "className">) => {
   return (
-    <button className={cn(buttonVariants({ variant, size }))} {...props}>
+    <button
+      className={cn(
+        "active:bg-primary-50 active:text-primary-900",
+        buttonVariants({ variant, size }),
+      )}
+      {...props}
+    >
       {children}
     </button>
   );

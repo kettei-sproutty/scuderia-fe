@@ -4,6 +4,8 @@ const prisma = new PrismaClient();
 
 const main = async () => {
   // Clean DB
+  await prisma.answer.deleteMany({});
+  await prisma.question.deleteMany({});
   await prisma.profile.deleteMany({});
   await prisma.workshop.deleteMany({});
 
