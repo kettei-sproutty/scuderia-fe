@@ -15,8 +15,8 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx --no -- commitlint --edit ${1}"
+    "pre-commit": "pnpm dlx lint-staged",
+    "commit-msg": "pnpm dlx --no -- commitlint --edit ${1}"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts,tsx}": [
