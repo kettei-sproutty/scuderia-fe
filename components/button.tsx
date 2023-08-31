@@ -8,9 +8,9 @@ const buttonVariants = cva("w-full cursor-pointer justify-center rounded-sm", {
   variants: {
     variant: {
       filled:
-        "border bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200",
+        "border bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 active:bg-primary-50",
       outlined:
-        "border border-primary-300 text-primary-300 hover:text-primary-100 hover:ring-1 hover:ring-primary-100",
+        "border border-primary-300 text-primary-300 hover:text-primary-100 hover:ring-1 hover:ring-primary-100 active:bg-primary-50 active:text-primary-900",
     },
     size: {
       sm: "px-2 py-1.5 text-xs",
@@ -28,13 +28,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof
 
 const Button = ({ children, variant, size, ...props }: Omit<ButtonProps, "className">) => {
   return (
-    <button
-      className={cn(
-        "active:bg-primary-50 active:text-primary-900",
-        buttonVariants({ variant, size }),
-      )}
-      {...props}
-    >
+    <button className={cn(buttonVariants({ variant, size }))} {...props}>
       {children}
     </button>
   );
