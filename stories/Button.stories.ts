@@ -18,6 +18,7 @@ const meta = {
       control: "select",
       options: ["filled", "outlined"],
     },
+    disabled: { control: "boolean" },
     size: { options: ["sm", "md", "lg"], control: { type: "select" } },
   },
 } satisfies Meta<typeof Button>;
