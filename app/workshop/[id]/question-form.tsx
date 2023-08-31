@@ -42,7 +42,9 @@ const QuestionForm: FC<QuestionFormProps> = ({ workshopId }) => {
         required
       />
       <div className="w-1/5">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={!question}>
+          Submit
+        </Button>
       </div>
     </form>
   );
