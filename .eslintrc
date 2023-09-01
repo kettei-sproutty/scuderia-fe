@@ -1,4 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "ignorePatterns": ["node_modules/*", ".next/*"],
+  "root": true,
   "extends": [
     "next/core-web-vitals",
     "plugin:tailwindcss/recommended",

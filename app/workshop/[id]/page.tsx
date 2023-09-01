@@ -1,9 +1,14 @@
-import type { PageProps as WorkshopByIdPageProps } from ".next/types/app/workshop/[id]/page";
-import QuestionForm from "app/workshop/[id]/question-form";
 import { PrismaClient } from "@prisma/client";
 import Card from "@components/card";
 import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
+import QuestionForm from "./question-form";
+
+type WorkshopByIdPageProps = {
+  params: {
+    id: string;
+  };
+};
 
 const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   const client = new PrismaClient();
