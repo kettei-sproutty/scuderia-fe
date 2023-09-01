@@ -92,13 +92,13 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
         {/*<div className={"text-3xl uppercase text-primary-500"}>Welcome to scuderia frontend</div>*/}
         <motion.div
           className={"h-full w-2/3 rounded-sm border bg-primary-600 bg-opacity-10 backdrop-blur-xl"}
-          initial={{ y: "110%" }}
-          animate={{ y: 0 }}
-          transition={{
-            duration: 1,
-            delay: 0.5,
-            y: { type: "spring", stiffness: 100, delay: 1.5 },
-          }}
+          // initial={{ y: "110%" }}
+          // animate={{ y: 0 }}
+          // transition={{
+          //   duration: 1,
+          //   delay: 0.5,
+          //   y: {  delay: 1.5 },
+          // }}
         ></motion.div>
         <motion.form
           className={
@@ -108,9 +108,9 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
           initial={{ opacity: 0, x: "110%" }}
           animate={{ opacity: 1, x: 0 }}
           transition={{
-            duration: 1,
+            duration: 2,
             delay: 0.5,
-            x: { type: "spring", stiffness: 100, delay: 1.5 },
+            x: { delay: 1.5 },
           }}
         >
           <InputText id="email" name="email" label="email" />
