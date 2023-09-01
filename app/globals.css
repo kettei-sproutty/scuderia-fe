@@ -15,3 +15,16 @@
     @apply flex items-center justify-center bg-primary-950 px-2 text-primary-100;
   }
 }
+
+
+.parent[data-isOpen="true"] {
+  width: 400px;
+  height: 200px;
+}
+
+.child {
+  width: 40px;
+  height: 40px;
+  background: #f107a3;
+  border-radius: 50%;
+}
