@@ -2,6 +2,7 @@ import "./globals.css";
 import type { PropsWithChildren, ReactElement } from "react";
 import type { Metadata } from "next";
 import { Exo } from "next/font/google";
+import { cn } from "@utils/cn";
 
 export const dynamic = "force-dynamic";
 
@@ -50,8 +51,10 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
-      <body className={" flex h-screen flex-1  flex-col px-6 py-8 "}>
-        <main className={exo.className}>{children}</main>
+      <body>
+        <main className={cn(exo.className, " flex h-screen flex-col overflow-hidden px-6 py-8 ")}>
+          {children}
+        </main>
       </body>
     </html>
   );

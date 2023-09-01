@@ -24,7 +24,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
         <div
           className={cn(
             "relative grid w-full grid-cols-[minmax(25%,auto)_1fr] border border-primary-100 rounded-sm text-primary-100 focus-within:ring-2 focus-within:ring-primary-100 hover:ring-2 hover:ring-primary-100 focus:outline-none",
-            { "border-2 border-error-light": error },
+            { "ring-2 ring-error-light": error },
             { "grid-cols-[minmax(25%,auto)_1fr]": !suffix },
             { "grid-cols-[minmax(25%,auto)_1fr_minmax(25%,auto)]": suffix },
           )}
