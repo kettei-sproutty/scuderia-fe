@@ -18,18 +18,6 @@
     "pre-commit": "pnpm dlx lint-staged",
     "commit-msg": "pnpm dlx --no -- commitlint --edit ${1}"
   },
-  "lint-staged": {
-    "*.{js,cjs,mjs,ts,tsx}": [
-      "prettier --write --",
-      "eslint --fix --"
-    ],
-    "*.{json,md,mdx,yaml,yml}": [
-      "prettier --write --"
-    ],
-    "*.prisma": [
-      "prisma format"
-    ]
-  },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@prisma/client": "^5.2.0",

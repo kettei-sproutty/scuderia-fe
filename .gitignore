@@ -24,6 +24,7 @@ out
 
 # Typescript
 next-env.d.ts
+tsconfig.tsbuildinfo
 
 # Webstorm
 .idea
