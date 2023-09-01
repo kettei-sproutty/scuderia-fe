@@ -15,8 +15,8 @@
     "seed": "ts-node prisma/seed.ts"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx lint-staged",
-    "commit-msg": "npx --no -- commitlint --edit ${1}"
+    "pre-commit": "pnpm dlx lint-staged",
+    "commit-msg": "pnpm dlx --no -- commitlint --edit ${1}"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,ts,tsx}": [
@@ -35,6 +35,7 @@
     "@prisma/client": "^5.2.0",
     "@supabase/auth-helpers-nextjs": "^0.7.4",
     "@supabase/supabase-js": "^2.33.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.1",
     "next": "^13.4.19",
