@@ -8,15 +8,13 @@ generator client {
 }
 
 model Profile {
-  id         String    @id @default(uuid())
-  email      String    @unique
+  id         String     @id @default(uuid())
+  email      String     @unique
   name       String?
   bio        String?
   picture    String?
-  created_at DateTime  @default(now())
-  Workshop   Workshop? @relation(fields: [workshopId], references: [id])
-  workshopId String?
-  Question   Question? @relation(fields: [questionId], references: [id])
+  created_at DateTime   @default(now())
+  questions  Question[]
   questionId String?
   Answer     Answer[]
 }
@@ -25,28 +23,28 @@ model Workshop {
   id          String     @id @default(uuid())
   topic       String
   description String?
-  hosts       Profile[]
   questions   Question[]
   date        DateTime
   created_at  DateTime   @default(now())
 }
 
 model Question {
-  id          String    @id @default(uuid())
-  text        String
-  workshop    Workshop  @relation(fields: [workshop_id], references: [id])
-  workshop_id String
-  upvotes     Profile[]
-  answers     Answer[]
-  created_at  DateTime  @default(now())
+  id         String   @id @default(uuid())
+  text       String
+  workshop   Workshop @relation(fields: [workshopId], references: [id])
+  workshopId String
+  answers    Answer[]
+  author     Profile  @relation(fields: [authorId], references: [id])
+  authorId   String
+  created_at DateTime @default(now())
 }
 
 model Answer {
-  id          String   @id @default(uuid())
-  text        String
-  question    Question @relation(fields: [question_id], references: [id])
-  question_id String
-  author      Profile  @relation(fields: [author_id], references: [id])
-  author_id   String
-  created_at  DateTime @default(now())
+  id         String   @id @default(uuid())
+  text       String
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId String
+  author     Profile  @relation(fields: [authorId], references: [id])
+  authorId   String
+  created_at DateTime @default(now())
 }
