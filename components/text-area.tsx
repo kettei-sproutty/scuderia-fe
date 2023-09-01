@@ -8,7 +8,7 @@ type TextAreaProps = {
   size?: "sm" | "md" | "lg";
 } & React.InputHTMLAttributes<HTMLTextAreaElement>;
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ label, placeholder, required, value, error, id, size, onChange }, ref) => {
+  ({ label, error, id, required, size, ...props }, ref) => {
     return (
       <div
         className={cn(
@@ -27,11 +27,8 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
             "my-1 rounded-sm border bg-transparent p-2 hover:ring-2 border-primary-100 hover:ring-primary-100 focus:outline-none focus:ring-2 focus:ring-primary-100",
             { "border-2 border-error-light": error },
           )}
-          placeholder={placeholder}
-          value={value}
-          id={id}
-          onChange={onChange}
           ref={ref}
+          {...props}
         />
         {error && <span className="font-semibold text-error-light">{error}</span>}
       </div>
