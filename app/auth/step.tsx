@@ -113,7 +113,7 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
             x: { type: "spring", stiffness: 100, delay: 1.5 },
           }}
         >
-          <InputText size={"lg"} id="email" name="email" label="email" />
+          <InputText id="email" name="email" label="email" />
           <div className={"w-full"}>
             <Button disabled={pending} type="submit">
               <ArrowRightOnRectangleIcon className={"h-4"} />
