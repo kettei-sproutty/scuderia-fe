@@ -4,7 +4,7 @@ import { getURL } from "@lib/url";
 import { cookies } from "next/headers";
 
 export const sendOTPEmail = async (formData: FormData) => {
-  const email = formData.get("email")?.toString();
+  const email = `${formData.get("email")?.toString()}@accenture.com`;
   if (!email) throw new Error("Email is required");
 
   const authenticationHelper = authentication("server-action", cookies);
