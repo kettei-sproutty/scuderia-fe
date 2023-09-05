@@ -51,7 +51,7 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
         x: { delay: 1.5 },
       }}
     >
-      <InputText id="email" name="email" label="email" suffix="@ccenture.com" />
+      <InputText id="email" name="email" label="email" suffix="@accenture.com" />
       <div className={"flex w-full justify-end"}>
         <Button disabled={pending} type="submit">
           <ArrowRightOnRectangleIcon className={"h-4"} />
