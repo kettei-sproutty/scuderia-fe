@@ -8,7 +8,7 @@ on:
       - edited
 
 jobs:
-  pr_title_check:
+  check-title:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

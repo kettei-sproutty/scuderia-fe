@@ -18,5 +18,3 @@ jobs:
         run: pnpm run format
       - name: Run ESLint
         run: pnpm run lint
-      - name: Run Tests
-        run: pnpm run test

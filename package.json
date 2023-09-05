@@ -12,6 +12,7 @@
     "test": "echo \"TODO!\" && exit 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "cypress:open": "cypress open",
     "seed": "ts-node prisma/seed.ts"
   },
   "simple-git-hooks": {
@@ -52,10 +53,12 @@
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "autoprefixer": "^10.4.15",
+    "cypress": "^13.1.0",
     "encoding": "^0.1.13",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^2.14.0",
     "eslint-plugin-storybook": "^0.6.13",
     "eslint-plugin-tailwindcss": "^3.13.0",
     "lint-staged": "^13.3.0",
