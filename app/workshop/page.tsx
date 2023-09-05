@@ -1,10 +1,9 @@
 import { PrismaClient } from "@prisma/client";
+import client from "@lib/db";
 import Link from "next/link";
 
 const WorkshopPage = async () => {
   const today = new Date().toISOString();
-
-  const client = new PrismaClient();
 
   const pastWorkshops = await client.workshop.findMany({
     where: {
