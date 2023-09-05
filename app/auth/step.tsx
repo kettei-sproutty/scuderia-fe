@@ -28,7 +28,7 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
 
       await sendOTPEmail(formData);
 
-      setEmail(email.toString());
+      setEmail(`${email.toString()}@accenture.com`);
       setStep(Step.Code);
     } catch (error) {
       console.error(">>> SEND OTP <<< ERROR", error);
