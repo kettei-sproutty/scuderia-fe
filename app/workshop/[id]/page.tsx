@@ -1,8 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import client from "@lib/db";
 import Card from "@components/card";
 import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
 import QuestionForm from "./question-form";
+import React from "react";
 
 type WorkshopByIdPageProps = {
   params: {
@@ -11,12 +12,6 @@ type WorkshopByIdPageProps = {
 };
 
 const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
-  const client = new PrismaClient();
-  const workshop = await client.workshop.findUnique({
-    where: {
-      id: params.id,
-    },
-  });
   const questions = await client.question.findMany({
     where: {
       workshopId: params.id,
@@ -26,16 +21,12 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   const author = await authentication("server-action", cookies).getUser();
 
   return (
-    <div className="flex flex-col gap-6">
-      <pre>{JSON.stringify(workshop, null, 2)}</pre>
-      <QuestionForm workshopId={params.id} />
-      <div className="flex flex-col gap-4">
-        {questions.map((question) => (
-          <Card key={question.id} title={author.name || ""}>
-            {question.text}
-          </Card>
-        ))}
-      </div>
+    <div className="flex h-full flex-col gap-4 overflow-auto ">
+      {questions.map((question) => (
+        <Card key={question.id} title={author.name || ""}>
+          {question.text}
+        </Card>
+      ))}
     </div>
   );
 };

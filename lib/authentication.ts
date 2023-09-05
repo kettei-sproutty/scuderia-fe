@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import client from "@lib/db";
 import {
   createMiddlewareClient,
   createRouteHandlerClient,
@@ -84,14 +84,13 @@ const authenticationHelper = (supabase: SupabaseClient) => {
       const { data } = await supabase.auth.getUser();
       if (!data.user || !data.user.email) throw new Error("User not found");
 
-      const prisma = new PrismaClient();
-      const profile = await prisma.profile.findUnique({
+      const profile = await client.profile.findUnique({
         where: { email: data.user.email },
       });
 
       if (profile) return profile;
 
-      const user = await prisma.profile.create({
+      const user = await client.profile.create({
         data: {
           email: data.user.email,
         },

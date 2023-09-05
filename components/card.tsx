@@ -10,8 +10,8 @@ type CardProps = {
 
 const Card = ({ children, title, confirmAction, cancelAction }: CardProps) => {
   return (
-    <div className="w-full overflow-hidden rounded-sm bg-primary-700 text-primary-100">
-      {title && <div className="bg-primary-600 p-4 font-semibold">{title}</div>}
+    <div className="w-full rounded-sm bg-primary-700 text-primary-100">
+      {title && <div className="bg-primary-600 p-2 font-semibold">{title}</div>}
       {children && <div className="p-4">{children}</div>}
       {confirmAction && (
         <div className="flex justify-around gap-2 bg-primary-700 p-4">
