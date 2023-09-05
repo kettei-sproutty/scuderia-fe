@@ -2,11 +2,15 @@
   "$schema": "https://json.schemastore.org/eslintrc",
   "ignorePatterns": ["node_modules/*", ".next/*"],
   "root": true,
+  "env": {
+    "cypress/globals": true
+  },
   "extends": [
     "next/core-web-vitals",
     "plugin:tailwindcss/recommended",
     "plugin:storybook/recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",

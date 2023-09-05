@@ -1,0 +1,33 @@
+name: Cypress Tests
+
+on:
+  - pull_request
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup
+        uses: ./.github/actions/setup
+      - run: pnpm install
+      - run: pnpm prettier --check .
+      - name: Install Vercel CLI
+        run: pnpm install -g vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - run: pnpm next lint
+      - uses: cypress-io/github-action@v5
+        with:
+          build: pnpm build
+          start: pnpm start
+          browser: "chrome"
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
