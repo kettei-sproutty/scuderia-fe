@@ -41,11 +41,9 @@ const QuestionForm: FC<QuestionFormProps> = ({ workshopId }) => {
         onChange={handleQuestionChange}
         required
       />
-      <div className="w-1/5">
-        <Button type="submit" disabled={!question}>
-          Submit
-        </Button>
-      </div>
+      <Button type="submit" disabled={!question}>
+        Submit
+      </Button>
     </form>
   );
 };
