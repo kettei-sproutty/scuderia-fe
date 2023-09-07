@@ -7,6 +7,8 @@ import { sendOTPEmail, verifyOTP } from "./actions";
 import { useRouter } from "next/navigation";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
+import { z } from "zod";
+import React from "react";
 
 export enum Step {
   Email,
@@ -20,7 +22,12 @@ export type EmailStepProps = {
 
 export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
   const { pending } = useFormStatus();
+  const [error, setError] = React.useState<string | undefined>(undefined);
 
+  const mailSchema = z
+    .string()
+    .regex(/^[a-zA-Z.]*$/, { message: "Only letters and dots are allowed" })
+    .optional();
   const sendOtp = async (formData: FormData) => {
     try {
       const email = formData.get("email");
@@ -51,7 +58,24 @@ export const EmailStep = ({ setEmail, setStep }: EmailStepProps) => {
         x: { delay: 1.5 },
       }}
     >
-      <InputText id="email" name="email" label="email" suffix="@accenture.com" />
+      <InputText
+        id="email"
+        name="email"
+        label="EID"
+        suffix="@accenture.com"
+        placeholder="john.doe"
+        error={error}
+        onChange={(e) => {
+          try {
+            mailSchema.parse(e.target.value);
+            setError(undefined);
+          } catch (err) {
+            if (err instanceof z.ZodError) {
+              setError(err.errors[0].message);
+            }
+          }
+        }}
+      />
       <div className={"flex w-full justify-end"}>
         <Button disabled={pending} type="submit">
           <ArrowRightOnRectangleIcon className={"h-4"} />

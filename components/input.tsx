@@ -15,7 +15,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
     return (
       <div
         className={cn(
-          "flex w-full flex-col",
+          "flex w-full flex-col gap-2",
           { "text-xs": size === "sm" },
           { "text-sm": size === "md" },
           { "text-md": size === "lg" },
@@ -42,7 +42,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
           />
           {suffix && <span className="input-text-label border-l border-primary-50">{suffix}</span>}
         </div>
-        {error && <span className="font-semibold text-error-light">{error}</span>}
+        <span className="h-4 font-semibold text-error-light">{error || ""}</span>
       </div>
     );
   },
