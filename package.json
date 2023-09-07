@@ -29,7 +29,8 @@
     "next": "^13.4.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwind-merge": "^1.14.0"
+    "tailwind-merge": "^1.14.0",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
