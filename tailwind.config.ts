@@ -11,6 +11,15 @@ export default {
       fontFamily: {
         ferroRosso: ["Ferro Rosso", "sans-serif"],
       },
+
+      borderWidth: {
+        DEFAULT: ".5px",
+      },
+
+      ringWidth: {
+        DEFAULT: ".5px",
+      },
+
       colors: {
         //SLATE
         // background: "#0f172a",

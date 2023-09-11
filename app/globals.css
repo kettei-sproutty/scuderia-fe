@@ -12,8 +12,21 @@
 
 @layer components {
   .input-text-label {
-    @apply flex items-center justify-center bg-primary-950 px-2 text-primary-100;
+    @apply flex items-center justify-center bg-primary-800 px-2 text-primary-100;
   }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+
 }
 
 .parent[data-isOpen="true"] {
@@ -27,3 +40,10 @@
   background: #f107a3;
   border-radius: 50%;
 }
+
+
+
+
+
+
+
