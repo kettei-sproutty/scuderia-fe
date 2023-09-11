@@ -19,3 +19,23 @@ export const createWorkshop = async (questionText: string, workshopId: string) =
 
   return question;
 };
+
+export const updateUpvoteQuestion = async (
+  questionId: string,
+  workshopId: string,
+  questionUpvotes: string[],
+) => {
+  const user = await authentication("server-action", cookies).getUser();
+  const isAlreadyUpvoted = questionUpvotes.includes(user.id);
+  await client.question.update({
+    where: {
+      id: questionId,
+    },
+    data: {
+      upvotes: !isAlreadyUpvoted
+        ? [...questionUpvotes, user.id]
+        : questionUpvotes.filter((id) => id !== user.id),
+    },
+  });
+  revalidatePath(`/workshop/${workshopId}`);
+};

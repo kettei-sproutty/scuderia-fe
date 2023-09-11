@@ -12,7 +12,7 @@
     "test": "echo \"TODO!\" && exit 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node -O '{\"module\":\"commonjs\"}' prisma/seed.ts"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm dlx lint-staged",
