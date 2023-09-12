@@ -7,7 +7,8 @@ const HomePage = async () => {
 
   return (
     <div>
-      <h1>Dashboard</h1>
+      <h1 className="text-2xl">Dashboard</h1>
+
       <pre>{JSON.stringify(user, null, 2)}</pre>
     </div>
   );
