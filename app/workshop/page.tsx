@@ -16,6 +16,9 @@ const WorkshopPage = async () => {
     orderBy: {
       date: "desc",
     },
+    include: {
+      questions: true,
+    },
   });
 
   const upcomingWorkshop = await client.workshop.findFirst({
@@ -26,6 +29,9 @@ const WorkshopPage = async () => {
     },
     orderBy: {
       date: "asc",
+    },
+    include: {
+      questions: true,
     },
   });
 
