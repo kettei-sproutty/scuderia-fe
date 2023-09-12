@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Exo } from "next/font/google";
 import { cn } from "@utils/cn";
 import { NavigationMenu } from "@components/navigation-menu";
+import Header from "./header";
 
 export const dynamic = "force-dynamic";
 
@@ -53,15 +54,7 @@ const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
       <body className="h-screen">
-        <header className=" flex h-[5%] items-center justify-between border-b p-2">
-          <span>Scuderia-FE</span>
-          <NavigationMenu
-            links={[
-              { name: "Dashboard", href: "/" },
-              { name: "Workshop", href: "/workshop" },
-            ]}
-          />
-        </header>
+        <Header />
         <main className={cn(exo.className, " flex flex-col overflow-hidden px-6 py-8 h-[95%]")}>
           {children}
         </main>
