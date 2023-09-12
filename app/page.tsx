@@ -51,16 +51,16 @@ const HomePage = async () => {
         </ul>
       </div>
       <h2 className="mb-2 text-2xl">My questions</h2>
-      <div className="mb-6 max-h-[40%] min-h-[20%] overflow-auto border border-accent p-2">
+      <div className="mb-6 flex max-h-[40%] min-h-[20%] flex-col gap-4 overflow-auto border border-accent p-2">
         {Object.entries(myQuestionOrdered).map(([workshop, questions]) => (
-          <React.Fragment key={workshop}>
+          <div key={workshop}>
             <h3 className="text-xl text-accent-light">{workshop}</h3>
             <ul>
               {questions.map((question) => (
                 <li key={question}>{question}</li>
               ))}
             </ul>
-          </React.Fragment>
+          </div>
         ))}
       </div>
     </React.Fragment>
