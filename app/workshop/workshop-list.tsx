@@ -7,7 +7,6 @@ type WorkshopListProps = {
 };
 
 const WorkshopList = ({ workshops }: WorkshopListProps) => {
-  console.log(workshops);
   return (
     <div className="flex flex-col overflow-auto">
       <ul className="flex flex-col gap-10">

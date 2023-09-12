@@ -55,7 +55,7 @@ const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
     <html lang="en" className={"bg-background text-white"}>
       <body className="h-screen">
         <Header />
-        <main className={cn(exo.className, " flex flex-col overflow-hidden px-6 py-8 h-[95%]")}>
+        <main className={cn(exo.className, " flex flex-col px-32 py-8 h-[95%] overflow-auto")}>
           {children}
         </main>
       </body>

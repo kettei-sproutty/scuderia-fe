@@ -2,7 +2,6 @@ import client from "@lib/db";
 import Card from "@components/card";
 import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
-import QuestionForm from "./question-form";
 import React from "react";
 
 type WorkshopByIdPageProps = {

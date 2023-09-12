@@ -12,7 +12,7 @@ const Tabs = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Root>, TabsP
   ({ tabs, defaultValue, ...props }, ref) => {
     return (
       <TabsPrimitive.Root className="h-full" ref={ref} defaultValue={defaultValue} {...props}>
-        <TabsList className={`grid-cols-${tabs.length}  grid w-full rounded bg-primary-700 px-1`}>
+        <TabsList className={`grid-cols-${tabs.length}  grid w-full rounded bg-accent px-1`}>
           {tabs.map(({ name }) => (
             <TabsTrigger key={name} value={name}>
               {name}

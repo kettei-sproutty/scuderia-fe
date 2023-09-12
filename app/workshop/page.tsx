@@ -21,7 +21,7 @@ const WorkshopPage = async () => {
     },
   });
 
-  const upcomingWorkshop = await client.workshop.findFirst({
+  const upcomingWorkshop = await client.workshop.findMany({
     where: {
       date: {
         gt: today,
@@ -43,7 +43,7 @@ const WorkshopPage = async () => {
           name: "Upcoming",
           content: upcomingWorkshop ? (
             <div>
-              <Link href={`/workshop/${upcomingWorkshop.id}`}>{upcomingWorkshop.topic}</Link>
+              <WorkshopList workshops={upcomingWorkshop} />
             </div>
           ) : (
             <h2>No upcoming workshops</h2>

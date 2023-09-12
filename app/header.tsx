@@ -6,7 +6,7 @@ const Header = () => (
     <NavigationMenu
       links={[
         { name: "Dashboard", href: "/" },
-        { name: "Workshop", href: "/workshop" },
+        { name: "Workshops", href: "/workshop" },
       ]}
     />
   </header>
