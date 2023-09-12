@@ -21,7 +21,7 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   const author = await authentication("server-action", cookies).getUser();
 
   return (
-    <div className="flex h-full flex-col gap-4 overflow-auto ">
+    <div className="flex flex-col gap-4 overflow-auto ">
       {questions.map((question) => (
         <Card key={question.id} title={author.name || ""}>
           {question.text}
