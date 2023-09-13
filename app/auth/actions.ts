@@ -26,9 +26,7 @@ export const sendOTPEmail = async (formData: FormData) => {
   }
 };
 
-export const verifyOTP = async (formData: FormData, email: string) => {
-  const code = formData.get("code")?.toString();
-
+export const verifyOTP = async (code: string, email: string) => {
   if (!code || !email) throw new Error("Code is required");
 
   const authenticationHelper = authentication("server-action", cookies);

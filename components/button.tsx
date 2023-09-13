@@ -5,7 +5,7 @@ import type { ButtonHTMLAttributes } from "react";
 import React from "react";
 
 const buttonVariants = cva(
-  "flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm transition-all disabled:pointer-events-none disabled:opacity-50",
+  "flex cursor-pointer items-center justify-center gap-2 rounded-sm transition-all disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
