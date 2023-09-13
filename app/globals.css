@@ -14,6 +14,10 @@
   .input-text-label {
     @apply flex items-center justify-center bg-primary-800 px-2 text-primary-100;
   }
+
+  .login-form{
+    @apply w-full h-full flex justify-center flex-col gap-12;
+  }
 }
 
 @layer utilities {

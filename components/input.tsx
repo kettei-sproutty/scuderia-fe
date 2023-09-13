@@ -15,15 +15,15 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
     return (
       <div
         className={cn(
-          "flex w-full flex-col gap-2",
-          { "text-xs": size === "sm" },
-          { "text-sm": size === "md" },
-          { "text-md": size === "lg" },
+          "flex w-full flex-col gap-2 relative",
+          { "text-xs h-8": size === "sm" },
+          { "text-sm h-12": size === "md" },
+          { "text-md h-16": size === "lg" },
         )}
       >
         <div
           className={cn(
-            "relative grid w-full grid-cols-[minmax(25%,auto)_1fr] ring ring-primary-700 rounded-sm text-primary-500 focus-within:ring-2 focus-within:ring-primary-200 hover:ring-2 hover:ring-primary-200 focus:outline-none ",
+            "h-full grid w-full grid-cols-[minmax(25%,auto)_1fr] ring ring-primary-700 rounded-sm text-primary-500 focus-within:ring-2 focus-within:ring-primary-200 hover:ring-2 hover:ring-primary-200 focus:outline-none ",
             {
               "ring-2 ring-error-light  focus-within:ring-error-light  hover:ring-error-light":
                 error,
@@ -47,7 +47,9 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
             <span className="input-text-label border-l border-primary-700 px-2">{suffix}</span>
           )}
         </div>
-        <span className="h-4 font-semibold text-error-light">{error || ""}</span>
+        <span className="absolute bottom-[-18px] h-4 font-semibold text-error-light">
+          {error || ""}
+        </span>
       </div>
     );
   },

@@ -1,7 +1,6 @@
 "use client";
-
 import { getOS } from "@utils/operating-system";
-import React, { FC, ReactNode, useEffect, useRef } from "react";
+import React, { ReactNode, useEffect, useRef } from "react";
 import ShellInfoBar from "@components/fake-shell/shell-info-bar";
 
 export type ShellMessage = {
@@ -13,7 +12,7 @@ type FakeShellProps = {
   messages: ShellMessage[];
 };
 
-const FakeShell: FC<FakeShellProps> = ({ messages }) => {
+const FakeShell = ({ messages }: FakeShellProps) => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

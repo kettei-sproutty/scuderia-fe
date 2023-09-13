@@ -1,12 +1,12 @@
-import { getOS } from "@utils/operating-system";
-import React, { FC } from "react";
+"use client";
+import React from "react";
 
 type ShellInfoBarProps = {
   firstSegment: string;
   secondSegment: string;
   thirdSegment: string;
 };
-const ShellInfoBar: FC<ShellInfoBarProps> = ({ firstSegment, secondSegment, thirdSegment }) => {
+const ShellInfoBar = ({ firstSegment, secondSegment, thirdSegment }: ShellInfoBarProps) => {
   return (
     <div className="flex">
       <div className=" flex h-5 items-center rounded-l-sm bg-primary-800 px-2 text-center text-xs text-white">

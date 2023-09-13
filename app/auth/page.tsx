@@ -6,13 +6,18 @@ import FakeShell, { ShellMessage } from "@components/fake-shell/fake-shell";
 
 const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
+  const [otp, setOtp] = useState<string>("");
   const [step, setStep] = useState<Step>(Step.Email);
   const [msgs, setMsgs] = useState<ShellMessage[]>([
     {
-      content: "Welcome to Scuderia-fe",
+      content: "Welcome to Scuderia-FE",
       time: new Date().toLocaleTimeString(),
     },
   ]);
+
+  const updateMessages = (latestMsg: ShellMessage) => {
+    setMsgs((prev) => [...prev, latestMsg]);
+  };
 
   const topLeftStyle = {
     width: "800px",
@@ -22,6 +27,7 @@ const AuthPage = () => {
     backgroundColor: "rgb(255, 67, 75)",
     background: "linear-gradient(#4d5bce, #43d9ad)",
     opacity: 0.3,
+    zIndex: -1,
   };
 
   const bottomRightStyle = {
@@ -32,6 +38,7 @@ const AuthPage = () => {
     backgroundColor: "rgb(255, 67, 75)",
     background: "linear-gradient(#43d9ad, #4d5bce)",
     opacity: 0.4,
+    zIndex: -1,
   };
 
   return (
@@ -57,37 +64,24 @@ const AuthPage = () => {
         className={"absolute bottom-0 right-0"}
         style={bottomRightStyle}
       />
-      {/*min and max heigth is necessary to avoid layout shifting when messages are added to the fake shell*/}
-      <div className="flex h-2/3 max-h-[66.666667%] min-h-[66.666667%]  w-full gap-4">
-        <div className="flex h-full w-2/3"></div>
-        {step === Step.Email ? (
-          <EmailStep
-            setEmail={setEmail}
-            setStep={setStep}
-            onFocus={() =>
-              setMsgs([
-                ...msgs,
-                {
-                  content: '{ target: "email", action: "focus" }',
-
-                  time: new Date().toLocaleTimeString(),
-                },
-              ])
-            }
-            onBlur={() =>
-              setMsgs([
-                ...msgs,
-                {
-                  content: '{ target: "email", action: "blur" }',
-
-                  time: new Date().toLocaleTimeString(),
-                },
-              ])
-            }
-          />
-        ) : (
-          <CodeStep email={email} />
-        )}
+      <div className="mx-auto flex  h-full w-full items-center justify-center lg:h-2/3 lg:w-3/5 ">
+        <div
+          className={
+            "flex h-full w-full flex-col items-center gap-8 rounded-sm border border-primary-700  bg-primary-800/50  p-8 backdrop-blur lg:h-1/2 "
+          }
+        >
+          <h2 className="text-3xl font-semibold text-primary-500"> LOGIN </h2>
+          {step === Step.Email ? (
+            <EmailStep
+              setEmail={setEmail}
+              setStep={setStep}
+              onFirstFocus={updateMessages}
+              onCodeSent={updateMessages}
+            />
+          ) : (
+            <CodeStep email={email} otp={otp} setOtp={setOtp} onError={updateMessages} />
+          )}
+        </div>
       </div>
       {/*min and max heigth is necessary to avoid layout shifting when messages are added to the fake shell*/}
       <div className={"flex h-1/3 max-h-[33.333333%] min-h-[33.333333%] w-full"}>

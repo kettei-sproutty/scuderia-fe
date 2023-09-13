@@ -5,10 +5,12 @@ import Button from "@components/button";
 import InputText from "@components/input";
 import { sendOTPEmail, verifyOTP } from "./actions";
 import { useRouter } from "next/navigation";
-import { ArrowRightOnRectangleIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
 import { z } from "zod";
-import React from "react";
+import React, { useEffect } from "react";
+import OtpInput from "@components/otp-input";
+import { ShellMessage } from "@components/fake-shell/fake-shell";
+import { composeMessage } from "@utils/shell-messages";
 
 export enum Step {
   Email,
@@ -18,13 +20,22 @@ export enum Step {
 export type EmailStepProps = {
   setEmail: Dispatch<SetStateAction<string>>;
   setStep: Dispatch<SetStateAction<Step>>;
-  onFocus: () => void;
-  onBlur: () => void;
+  onFirstFocus: (msg: ShellMessage) => void;
+  onCodeSent: (msg: ShellMessage) => void;
 };
 
-export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps) => {
+export const EmailStep = ({ setEmail, setStep, onFirstFocus, onCodeSent }: EmailStepProps) => {
   const { pending } = useFormStatus();
   const [error, setError] = React.useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    onFirstFocus(
+      composeMessage(
+        "Insert YOUR Enterprise ID to log in. Or someone else's if you wanna clog up their mailbox",
+      ),
+    );
+    document.getElementById("email")?.focus();
+  }, []);
 
   const mailSchema = z
     .string()
@@ -36,7 +47,11 @@ export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps
       if (!email) throw { message: "email is required" };
 
       await sendOTPEmail(formData);
-
+      onCodeSent(
+        composeMessage(
+          "We sent you a code. Even if it's ULTRA MEGA SECRET you still have to provide it",
+        ),
+      );
       setEmail(`${email.toString()}@accenture.com`);
       setStep(Step.Code);
     } catch (error) {
@@ -48,17 +63,11 @@ export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps
 
   return (
     <motion.form
-      className={
-        "flex  h-full w-1/3 flex-col items-center justify-center gap-8 rounded-md border border-[.5] border-primary-700 bg-primary-800/50   p-4 backdrop-blur"
-      }
+      initial={{ scale: 0.1 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="login-form"
       action={sendOtp}
-      initial={{ opacity: 0, x: "110%" }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        duration: 2,
-        delay: 0.5,
-        x: { delay: 1.5 },
-      }}
     >
       <InputText
         id="email"
@@ -67,8 +76,6 @@ export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps
         suffix="@accenture.com"
         placeholder="john.doe"
         error={error}
-        onFocus={onFocus}
-        onBlur={onBlur}
         onChange={(e) => {
           try {
             mailSchema.parse(e.target.value);
@@ -80,10 +87,9 @@ export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps
           }
         }}
       />
-      <div className={"flex w-full justify-end"}>
+      <div className={"flex w-full justify-center"}>
         <Button disabled={pending} type="submit">
-          <ArrowRightOnRectangleIcon className={"h-4"} />
-          Login
+          Send code
         </Button>
       </div>
     </motion.form>
@@ -92,21 +98,26 @@ export const EmailStep = ({ setEmail, setStep, onFocus, onBlur }: EmailStepProps
 
 export type CodeStepProps = {
   email: string;
+  otp: string;
+  setOtp: Dispatch<SetStateAction<string>>;
+  onError: (msg: ShellMessage) => void;
 };
 
-export const CodeStep = ({ email }: CodeStepProps) => {
+export const CodeStep = ({ email, otp, setOtp, onError }: CodeStepProps) => {
   const { pending } = useFormStatus();
   const router = useRouter();
 
-  const verifyOtp = async (formData: FormData) => {
-    try {
-      const code = formData.get("code");
-      if (!code) throw { message: "code is required" };
+  const handleOtpChange = (otpValue: string) => {
+    setOtp(otpValue);
+  };
 
-      await verifyOTP(formData, email);
+  const verifyOtp = async () => {
+    try {
+      await verifyOTP(otp, email);
       router.push("/");
     } catch (error) {
       // TODO: handle error
+      onError(composeMessage("Wrong Code, It's so secret that you forgot it already?"));
       console.error(">>> VERIFY OTP <<< ERROR", error);
       return;
     }
@@ -114,22 +125,16 @@ export const CodeStep = ({ email }: CodeStepProps) => {
 
   return (
     <motion.form
-      className={
-        "flex  h-full w-1/3 flex-col items-center justify-center gap-8 rounded-sm border  bg-primary-800/50  p-4 "
-      }
+      initial={{ scale: 0.1 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.3 }}
+      className="login-form"
       action={verifyOtp}
-      initial={{ opacity: 0, x: "110%" }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{
-        duration: 2,
-        delay: 0.5,
-        x: { delay: 1.5 },
-      }}
     >
-      <InputText id="code" name="code" label="code" />
-      <div className={"flex w-full justify-end"}>
+      <OtpInput onOtpChange={handleOtpChange} />
+      <div className={"flex w-full justify-center"}>
         <Button disabled={pending} type="submit">
-          Submit
+          Verify
         </Button>
       </div>
     </motion.form>
