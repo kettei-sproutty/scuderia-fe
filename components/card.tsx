@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import Button from "./button";
 
@@ -6,12 +8,17 @@ type CardProps = {
   children: ReactNode;
   confirmAction?: { label: string; action: () => void };
   cancelAction?: { label: string; action: () => void };
+  titleAction?: ReactNode;
 };
 
-const Card = ({ children, title, confirmAction, cancelAction }: CardProps) => {
+const Card = ({ children, title, confirmAction, cancelAction, titleAction }: CardProps) => {
   return (
     <div className="w-full rounded-sm bg-primary-700 text-primary-100">
-      {title && <div className="bg-primary-600 p-2 font-semibold">{title}</div>}
+      {title && (
+        <div className="flex items-center justify-between bg-primary-600 p-2 font-semibold">
+          {title} {titleAction && titleAction}
+        </div>
+      )}
       {children && <div className="p-4">{children}</div>}
       {confirmAction && (
         <div className="flex justify-around gap-2 bg-primary-700 p-4">
