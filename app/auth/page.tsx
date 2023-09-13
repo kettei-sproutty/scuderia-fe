@@ -8,15 +8,15 @@ const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
   const [step, setStep] = useState<Step>(Step.Email);
-  const [msgs, setMsgs] = useState<ShellMessage[]>([
+  const [shellMessages, setShellMessages] = useState<ShellMessage[]>([
     {
       content: "Welcome to Scuderia-FE",
       time: new Date().toLocaleTimeString(),
     },
   ]);
 
-  const updateMessages = (latestMsg: ShellMessage) => {
-    setMsgs((prev) => [...prev, latestMsg]);
+  const updateMessages = (lastMessage: ShellMessage) => {
+    setShellMessages((prev) => [...prev, lastMessage]);
   };
 
   const topLeftStyle = {
@@ -85,7 +85,7 @@ const AuthPage = () => {
       </div>
       {/*min and max heigth is necessary to avoid layout shifting when messages are added to the fake shell*/}
       <div className={"flex h-1/3 max-h-[33.333333%] min-h-[33.333333%] w-full"}>
-        <FakeShell messages={msgs} />
+        <FakeShell messages={shellMessages} />
       </div>
     </div>
   );
