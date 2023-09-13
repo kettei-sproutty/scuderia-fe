@@ -37,6 +37,7 @@ model Question {
   answers    Answer[]
   author     Profile  @relation(fields: [authorId], references: [id])
   workshop   Workshop @relation(fields: [workshopId], references: [id])
+  upvotes    String[]
 }
 
 model Answer {

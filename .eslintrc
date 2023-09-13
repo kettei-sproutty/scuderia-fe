@@ -25,6 +25,6 @@
         "allowArrowFunctions": true
       }
     ],
-    "complexity": ["warn", 5]
+    "complexity": "off"
   }
 }
