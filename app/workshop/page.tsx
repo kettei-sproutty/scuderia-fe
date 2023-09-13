@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import client from "@lib/db";
 import Link from "next/link";
+import WorkshopList from "./workshop-list";
+import { Tabs } from "@components/tabs";
 
 const WorkshopPage = async () => {
   const today = new Date().toISOString();
@@ -14,9 +16,12 @@ const WorkshopPage = async () => {
     orderBy: {
       date: "desc",
     },
+    include: {
+      questions: true,
+    },
   });
 
-  const upcomingWorkshop = await client.workshop.findFirst({
+  const upcomingWorkshop = await client.workshop.findMany({
     where: {
       date: {
         gt: today,
@@ -25,29 +30,36 @@ const WorkshopPage = async () => {
     orderBy: {
       date: "asc",
     },
+    include: {
+      questions: true,
+    },
   });
 
   return (
-    <div>
-      <h1>Upcoming Workshop</h1>
-      {upcomingWorkshop ? (
-        <div>
-          <Link href={`/workshop/${upcomingWorkshop.id}`}>{upcomingWorkshop.topic}</Link>
-        </div>
-      ) : (
-        "No upcoming workshops"
-      )}
-      <h1>Past Workshops</h1>
-      {pastWorkshops.length === 0
-        ? "No past workshops"
-        : pastWorkshops.map((workshop) => {
-            return (
-              <div key={workshop.id}>
-                <Link href={`/workshop/${workshop.id}`}>{workshop.topic}</Link>
-              </div>
-            );
-          })}
-    </div>
+    <Tabs
+      defaultValue="Upcoming"
+      tabs={[
+        {
+          name: "Upcoming",
+          content: upcomingWorkshop ? (
+            <div>
+              <WorkshopList workshops={upcomingWorkshop} />
+            </div>
+          ) : (
+            <h2>No upcoming workshops</h2>
+          ),
+        },
+        {
+          name: "Past",
+          content:
+            pastWorkshops.length === 0 ? (
+              <h2>No Past workshops</h2>
+            ) : (
+              <WorkshopList workshops={pastWorkshops} />
+            ),
+        },
+      ]}
+    />
   );
 };
 

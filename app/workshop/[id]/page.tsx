@@ -2,8 +2,8 @@ import client from "@lib/db";
 import Card from "@components/card";
 import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
-import QuestionForm from "./question-form";
 import React from "react";
+import Upvote from "./upvote";
 
 type WorkshopByIdPageProps = {
   params: {
@@ -21,9 +21,20 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
   const author = await authentication("server-action", cookies).getUser();
 
   return (
-    <div className="flex h-full flex-col gap-4 overflow-auto ">
+    <div className="flex flex-col gap-4 overflow-auto ">
       {questions.map((question) => (
-        <Card key={question.id} title={author.name || ""}>
+        <Card
+          key={question.id}
+          title={author.name || ""}
+          titleAction={
+            <Upvote
+              questionId={question.id}
+              workshopId={params.id}
+              questionUpvotes={question.upvotes}
+              profileId={author.id}
+            />
+          }
+        >
           {question.text}
         </Card>
       ))}
