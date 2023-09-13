@@ -9,7 +9,7 @@ const CardGlass = ({ children, title }: CardGlassProps) => {
         "flex h-fit w-full flex-col items-center justify-center gap-8 rounded-sm border border-primary-700 bg-primary-800/50 p-8 backdrop-blur"
       }
     >
-      <h2 className="text-3xl font-semibold text-primary-500"> {title} </h2>
+      {title && <h2 className="text-3xl font-semibold text-primary-500"> {title} </h2>}
       {children}
     </div>
   );
