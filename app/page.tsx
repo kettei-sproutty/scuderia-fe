@@ -2,6 +2,7 @@ import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
 import client from "@lib/db";
 import React from "react";
+import CardGlass from "@components/card-glass";
 
 const HomePage = async () => {
   const authenticationHelper = authentication("rsc", cookies);
@@ -40,21 +41,45 @@ const HomePage = async () => {
   );
 
   return (
-    <React.Fragment>
-      <h2 className="mb-2 text-2xl">Next workshop</h2>
-      <div className="mb-6 max-h-[40%] min-h-[20%] overflow-auto border border-accent p-2">
-        <h3 className="text-xl text-accent-light">{nextWorkshop?.topic}</h3>
-        <p className="mb-4">{nextWorkshop?.description}</p>
-        <h4 className="text-lg text-accent-lighter">Questions</h4>
-        <ul>
-          {nextWorkshop?.questions.map((question) => <li key={question.id}>{question.text}</li>)}
-        </ul>
-      </div>
-      <h2 className="mb-2 text-2xl">My questions</h2>
-      <div className="mb-6 flex max-h-[40%] min-h-[20%] flex-col gap-4 overflow-auto border border-accent p-2">
+    <div className=" flex h-full flex-col gap-10">
+      <section>
+        <h2 className="mb-2 text-2xl">Next workshop</h2>
+        <CardGlass title={nextWorkshop?.topic || "There is no scheduled workshop"}>
+          {nextWorkshop && (
+            <div>
+              <p className="mb-4">{nextWorkshop?.description}</p>
+              <h4 className="text-lg text-accent-lighter">Questions</h4>
+              <ul>
+                {nextWorkshop?.questions.map((question) => (
+                  <li key={question.id}>{question.text}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </CardGlass>
+      </section>
+      <section>
+        <h2 className="mb-2 text-2xl">My Questions</h2>
+        <CardGlass
+          title={Object.entries(myQuestionOrdered).length === 0 ? "No questions available" : ""}
+        >
+          {nextWorkshop && (
+            <div>
+              <p className="mb-4">{nextWorkshop?.description}</p>
+              <h4 className="text-lg text-accent-lighter">Questions</h4>
+              <ul>
+                {nextWorkshop?.questions.map((question) => (
+                  <li key={question.id}>{question.text}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </CardGlass>
+      </section>
+      {/* <div className="border-accent mb-6 flex max-h-[40%] min-h-[20%] flex-col gap-4 overflow-auto border p-2">
         {Object.entries(myQuestionOrdered).map(([workshop, questions]) => (
           <div key={workshop}>
-            <h3 className="text-xl text-accent-light">{workshop}</h3>
+            <h3 className="text-accent-light text-xl">{workshop}</h3>
             <ul>
               {questions.map((question) => (
                 <li key={question}>{question}</li>
@@ -62,8 +87,8 @@ const HomePage = async () => {
             </ul>
           </div>
         ))}
-      </div>
-    </React.Fragment>
+              </div> */}
+    </div>
   );
 };
 

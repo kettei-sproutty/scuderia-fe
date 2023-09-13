@@ -41,13 +41,14 @@ const WorkshopPage = async () => {
       tabs={[
         {
           name: "Upcoming",
-          content: upcomingWorkshop ? (
-            <div>
-              <WorkshopList workshops={upcomingWorkshop} />
-            </div>
-          ) : (
-            <h2>No upcoming workshops</h2>
-          ),
+          content:
+            upcomingWorkshop.length > 0 ? (
+              <div>
+                <WorkshopList workshops={upcomingWorkshop} />
+              </div>
+            ) : (
+              <h2>No upcoming workshops</h2>
+            ),
         },
         {
           name: "Past",

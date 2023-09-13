@@ -53,11 +53,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
-      <body className="h-screen">
+      <body className="h-screen pt-12">
         <Header />
-        <main className={cn(exo.className, " flex flex-col px-32 py-8 h-[95%] overflow-auto")}>
-          {children}
-        </main>
+        <main className={cn(exo.className, " flex flex-col px-32 h-full py-8")}>{children}</main>
       </body>
     </html>
   );
