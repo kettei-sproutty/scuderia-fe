@@ -16,8 +16,8 @@ const WorkshopDetailLayout = async ({ params, children }: WorkshopByIdPageProps)
   });
   return (
     <div className={"flex h-full w-full items-center justify-center gap-4"}>
-      <div className={"h-full w-1/3 rounded-sm border  p-4"}>
-        <h1 className="text-xl">{workshop?.topic}</h1>
+      <div className={"h-full w-1/3 rounded-sm border border-primary-700 bg-primary-800/50  p-4"}>
+        <h1 className="text-2xl font-semibold text-primary-500">{workshop?.topic}</h1>
         <p>{workshop?.description}</p>
       </div>
       <div className="flex h-full w-2/3 flex-col gap-6">

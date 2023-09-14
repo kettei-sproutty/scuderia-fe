@@ -13,13 +13,13 @@ type CardProps = {
 
 const Card = ({ children, title, confirmAction, cancelAction, titleAction }: CardProps) => {
   return (
-    <div className="w-full rounded-sm bg-primary-700 text-primary-100">
+    <div className="w-full rounded-sm rounded-t-md border border-primary-700 bg-primary-700 text-primary-100">
       {title && (
         <div className="flex items-center justify-between bg-primary-600 p-2 font-semibold">
           {title} {titleAction && titleAction}
         </div>
       )}
-      {children && <div className="p-4">{children}</div>}
+      {children && <div className="bg-primary-800/50 p-4">{children}</div>}
       {confirmAction && (
         <div className="flex justify-around gap-2 bg-primary-700 p-4">
           {cancelAction && (
