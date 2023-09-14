@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Step, CodeStep, EmailStep } from "./step";
 import { motion } from "framer-motion";
 import FakeShell, { ShellMessage } from "@components/fake-shell/fake-shell";
+import CardGlass from "@components/card-glass";
 
 const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
@@ -65,12 +66,7 @@ const AuthPage = () => {
         style={bottomRightStyle}
       />
       <div className="mx-auto flex  h-full w-full items-center justify-center lg:h-2/3 lg:w-3/5 ">
-        <div
-          className={
-            "flex h-full w-full flex-col items-center gap-8 rounded-sm border border-primary-700  bg-primary-800/50  p-8 backdrop-blur lg:h-1/2 "
-          }
-        >
-          <h2 className="text-3xl font-semibold text-primary-500"> LOGIN </h2>
+        <CardGlass title="LOGIN">
           {step === Step.Email ? (
             <EmailStep
               setEmail={setEmail}
@@ -81,7 +77,7 @@ const AuthPage = () => {
           ) : (
             <CodeStep email={email} otp={otp} setOtp={setOtp} onError={updateMessages} />
           )}
-        </div>
+        </CardGlass>
       </div>
       {/*min and max heigth is necessary to avoid layout shifting when messages are added to the fake shell*/}
       <div className={"flex h-1/3 max-h-[33.333333%] min-h-[33.333333%] w-full"}>

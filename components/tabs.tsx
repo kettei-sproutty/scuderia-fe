@@ -11,10 +11,12 @@ type TabsProps = React.ComponentPropsWithoutRef<typeof TabsPrimitive.Root> & {
 const Tabs = React.forwardRef<React.ElementRef<typeof TabsPrimitive.Root>, TabsProps>(
   ({ tabs, defaultValue, ...props }, ref) => {
     return (
-      <TabsPrimitive.Root className="h-full" ref={ref} defaultValue={defaultValue} {...props}>
-        <TabsList className={`grid-cols-${tabs.length}  grid w-full rounded bg-accent px-1`}>
+      <TabsPrimitive.Root className="h-[95%]" ref={ref} defaultValue={defaultValue} {...props}>
+        <TabsList
+          className={`grid  w-full grid-cols-2 rounded border border-primary-700 bg-primary-800/70 px-1`}
+        >
           {tabs.map(({ name }) => (
-            <TabsTrigger key={name} value={name}>
+            <TabsTrigger key={name} value={name} className="font-semibold">
               {name}
             </TabsTrigger>
           ))}
@@ -68,7 +70,7 @@ const TabsContent = React.forwardRef<
   <TabsPrimitive.Content
     ref={ref}
     className={cn(
-      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 overflow-auto h-[90%]",
+      "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 overflow-auto h-[95%]",
       className,
     )}
     {...props}
