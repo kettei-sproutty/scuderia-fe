@@ -11,6 +11,7 @@ import React, { useEffect } from "react";
 import OtpInput from "@components/otp-input";
 import { ShellMessage } from "@components/fake-shell/fake-shell";
 import { composeMessage } from "@utils/shell-messages";
+import Spinner from "@components/spinner";
 
 export enum Step {
   Email,
