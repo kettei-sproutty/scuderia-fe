@@ -44,10 +44,13 @@ const HomePage = async () => {
     <div className=" flex h-full flex-col gap-10">
       <section>
         <h2 className="mb-2 text-2xl">Next workshop</h2>
-        <CardGlass title={nextWorkshop?.topic || "There is no scheduled workshop"}>
+        <CardGlass title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}>
           {nextWorkshop && (
             <React.Fragment>
-              <p>{nextWorkshop?.description}</p>
+              <div className="flex flex-col items-center justify-center">
+                <h2 className="text-3xl font-semibold text-primary-500"> {nextWorkshop.topic} </h2>
+                <p>{nextWorkshop?.description}</p>
+              </div>
               {nextWorkshop?.questions.length > 0 && (
                 <div className="flex flex-col items-center justify-center">
                   <h4 className="text-xl font-semibold text-primary-500">Questions</h4>
