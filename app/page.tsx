@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import client from "@lib/db";
 import React from "react";
 import CardGlass from "@components/card-glass";
+import NextWorkshop from "@components/next-workshop";
 
 const HomePage = async () => {
   const authenticationHelper = authentication("rsc", cookies);
@@ -44,22 +45,8 @@ const HomePage = async () => {
     <div className=" flex h-full flex-col gap-10">
       <section>
         <h2 className="mb-2 text-2xl">Next workshop</h2>
-        <CardGlass title={nextWorkshop?.topic || "There is no scheduled workshop"}>
-          {nextWorkshop && (
-            <React.Fragment>
-              <p>{nextWorkshop?.description}</p>
-              {nextWorkshop?.questions.length > 0 && (
-                <div className="flex flex-col items-center justify-center">
-                  <h4 className="text-xl font-semibold text-primary-500">Questions</h4>
-                  <ul className="flex flex-col items-center justify-center">
-                    {nextWorkshop?.questions.map((question) => (
-                      <li key={question.id}>{question.text}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </React.Fragment>
-          )}
+        <CardGlass title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}>
+          {nextWorkshop && <NextWorkshop nextWorkshop={nextWorkshop} />}
         </CardGlass>
       </section>
       <section>

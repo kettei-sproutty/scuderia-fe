@@ -22,7 +22,7 @@ const FakeShell = ({ messages }: FakeShellProps) => {
   }, [messages]);
 
   return (
-    <div className=" flex h-full w-full flex-col  rounded-md  border  border-primary-700 bg-primary-950/50 backdrop-blur-lg ">
+    <div className=" flex h-full w-full flex-col  rounded-md  border  border-primary-700 bg-primary-950/50 text-white backdrop-blur-lg">
       <div className="sticky  flex h-8 w-full items-center justify-start gap-2 rounded-t-md border-b  border-primary-700 bg-primary-800 px-4   ">
         <span className="h-3 w-3 rounded-full bg-error" />
         <span className="h-3 w-3 rounded-full bg-warning-light" />

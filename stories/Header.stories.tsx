@@ -4,6 +4,13 @@ import Header from "app/header";
 const meta = {
   title: "Base components/Header",
   component: Header,
+  decorators: [
+    (Story) => (
+      <div style={{ width: "500px", height: "100px" }}>
+        <Story />
+      </div>
+    ),
+  ],
   parameters: {
     layout: "centered",
   },
@@ -23,4 +30,11 @@ export const Base: Story = {
       { name: "Workshop", href: "/workshop" },
     ],
   },
+  decorators: [
+    (Story) => (
+      <div style={{ transform: "scale(1)", height: "100vh" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
