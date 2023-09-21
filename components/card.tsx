@@ -13,9 +13,9 @@ type CardProps = {
 
 const Card = ({ children, title, confirmAction, cancelAction, titleAction }: CardProps) => {
   return (
-    <div className="w-full rounded-sm rounded-t-md border border-primary-700 bg-primary-700 text-primary-100">
+    <div className="w-full rounded-sm rounded-t-md border border-primary-700 bg-primary-800 text-primary-100 transition-all  duration-300 ease-in hover:transition-all ">
       {title && (
-        <div className="flex items-center justify-between bg-primary-600 p-2 font-semibold">
+        <div className="flex items-center justify-between bg-primary-700 p-2 font-semibold">
           {title} {titleAction && titleAction}
         </div>
       )}

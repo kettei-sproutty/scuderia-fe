@@ -5,6 +5,7 @@ import Button from "../../../components/button";
 import TextArea from "../../../components/text-area";
 import { FC } from "react";
 import React from "react";
+import { ChevronRight } from "lucide-react";
 
 type QuestionFormProps = {
   workshopId: string;
@@ -31,7 +32,10 @@ const QuestionForm: FC<QuestionFormProps> = ({ workshopId }) => {
   };
 
   return (
-    <form className="flex flex-col items-end gap-2" action={saveWorkshop}>
+    <form
+      className="flex items-center justify-between gap-4 rounded-sm border border-primary-700 bg-primary-800/50 p-4  "
+      action={saveWorkshop}
+    >
       <TextArea
         id="question"
         name="question"
@@ -39,10 +43,9 @@ const QuestionForm: FC<QuestionFormProps> = ({ workshopId }) => {
         value={question}
         placeholder="What do you want to ask?"
         onChange={handleQuestionChange}
-        required
       />
-      <Button type="submit" disabled={!question}>
-        Submit
+      <Button type="submit" disabled={!question} size={"lg"}>
+        <ChevronRight />
       </Button>
     </form>
   );

@@ -15,14 +15,37 @@ const WorkshopDetailLayout = async ({ params, children }: WorkshopByIdPageProps)
     },
   });
   return (
-    <div className={"flex h-full w-full items-center justify-center gap-4"}>
-      <div className={"h-full w-1/3 rounded-sm border border-primary-700 bg-primary-800/50  p-4"}>
-        <h1 className="text-2xl font-semibold text-primary-500">{workshop?.topic}</h1>
-        <p>{workshop?.description}</p>
+    <div className={"flex h-full w-full flex-col items-center justify-between gap-4"}>
+      <div className={"flex h-5/6 w-full  justify-between  "}>
+        <section className="flex w-1/3 flex-col gap-8">
+          <h1 className="text-4xl font-semibold text-accent ">localhost:tremila</h1>
+
+          <div>
+            <h2 className="text-2xl font-semibold text-primary-500">{workshop?.topic}</h2>
+
+            {/*insert real dates*/}
+            <h3 className=" text-primary-200"> 22 Sept 2023 - 17.30</h3>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold text-primary-500">Hosts</h3>
+
+            {/* insert real hosts*/}
+            <ul>
+              <li className="text-sm text-primary-200">Malagisi Francesco</li>
+              <li className="text-sm text-primary-200">Marchi Alessio</li>
+              <li className="text-sm text-primary-200">Dan Alin</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold text-primary-500">Description</h3>
+            <p className="text-sm text-primary-200">{workshop?.description}</p>
+          </div>
+        </section>
+        <div className="flex h-full w-full items-end">{children}</div>
       </div>
-      <div className="flex h-full w-2/3 flex-col gap-6">
+      <div className="flex w-full flex-col justify-end gap-8">
         <QuestionForm workshopId={params.id} />
-        {children}
       </div>
     </div>
   );

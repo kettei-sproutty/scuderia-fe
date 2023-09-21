@@ -3,7 +3,6 @@ import type { PropsWithChildren, ReactElement } from "react";
 import type { Metadata } from "next";
 import { Exo } from "next/font/google";
 import { cn } from "@utils/cn";
-import { NavigationMenu } from "@components/navigation-menu";
 import Header from "./header";
 
 export const dynamic = "force-dynamic";
@@ -53,9 +52,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <html lang="en" className={"bg-background text-white"}>
-      <body className="h-screen pt-12">
+      <body className="h-screen pt-20">
         <Header />
-        <main className={cn(exo.className, " flex flex-col px-6 md:px-32  h-full py-8")}>
+        <main className={cn(exo.className, " flex flex-col px-6 md:px-24  h-full py-8")}>
           {children}
         </main>
       </body>

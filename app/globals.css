@@ -8,6 +8,7 @@
     font-style: normal;
     src: url("../public/fonts/ferro-rosso.regular.ttf") format("truetype");
   }
+
 }
 
 @layer components {
@@ -30,22 +31,28 @@
     scrollbar-width: none;
   }
 
+    *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgb(31 41 55 / 0.7);
+    border-radius: 20px;
+    border: 3px solid transparent;
+  }
+
+  ul{
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+
 
 }
-
-.parent[data-isOpen="true"] {
-  width: 400px;
-  height: 200px;
-}
-
-.child {
-  width: 40px;
-  height: 40px;
-  background: #f107a3;
-  border-radius: 50%;
-}
-
-
 
 
 
