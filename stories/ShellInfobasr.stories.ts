@@ -11,7 +11,6 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    firstSegment: { control: "text" },
     secondSegment: { control: "text" },
     thirdSegment: { control: "text" },
   },
@@ -22,7 +21,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Base: Story = {
   args: {
-    firstSegment: getOS(),
     secondSegment: "scuderia-fe",
     thirdSegment: "master",
   },

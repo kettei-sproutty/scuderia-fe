@@ -1,5 +1,8 @@
-export const getOS = () => {
+export const getOS = (navigato: Navigator) => {
   let OS = "unknown";
+  if (!navigator) {
+    return OS;
+  }
   if (navigator.userAgent.indexOf("Win") != -1) OS = "Windows";
   if (navigator.userAgent.indexOf("Mac") != -1) OS = " Mac OS";
   if (navigator.userAgent.indexOf("X11") != -1) OS = "UNIX";

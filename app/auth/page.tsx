@@ -4,11 +4,15 @@ import { Step, CodeStep, EmailStep } from "./step";
 import { motion } from "framer-motion";
 import FakeShell, { ShellMessage } from "@components/fake-shell/fake-shell";
 import CardGlass from "@components/card-glass";
+import React from "react";
+import EasterEgg from "./easter-egg";
+import { cameoMailList } from "@utils/cameo";
 
 const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
   const [step, setStep] = useState<Step>(Step.Email);
+  const [isCameoShowed, setIsCameoShowed] = useState(false);
   const [shellMessages, setShellMessages] = useState<ShellMessage[]>([
     {
       content: "Welcome to Scuderia-FE",
@@ -43,7 +47,10 @@ const AuthPage = () => {
   };
 
   return (
-    <div className={" relative flex h-full w-full flex-col justify-center gap-4  "}>
+    <div className={" relative flex h-full w-full flex-col justify-center gap-4 "}>
+      {cameoMailList.includes(email) && !!otp && !isCameoShowed && (
+        <EasterEgg disableCameo={() => setIsCameoShowed(true)} email={email} />
+      )}
       <motion.div
         animate={{ scale: [0.8, 1] }}
         transition={{
