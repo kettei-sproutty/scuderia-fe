@@ -60,11 +60,18 @@ export default {
           "950": "#030712",
         },
 
+        //accent: {
+        //lighter: "#c7acff",
+        //light: "#9549ff",
+        //DEFAULT: "#570ea4",
+        //dark: "#35066f",
+        //},
+
         accent: {
-          lighter: "#c7acff",
-          light: "#9549ff",
-          DEFAULT: "#570ea4",
-          dark: "#35066f",
+          lighter: "#67e8f9",
+          light: "#06b6d4",
+          DEFAULT: "#0e7490",
+          dark: "#083344",
         },
 
         info: {

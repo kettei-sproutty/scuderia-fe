@@ -2,8 +2,8 @@
 
 import { Question, Workshop } from "@prisma/client";
 import React from "react";
-import Button from "./button";
 import { useRouter } from "next/navigation";
+import { ArrowRightIcon } from "lucide-react";
 
 type NextWorkshopProps = {
   nextWorkshop: Workshop & { questions: Question[] };
@@ -11,21 +11,31 @@ type NextWorkshopProps = {
 const NextWorkshop = ({ nextWorkshop }: NextWorkshopProps) => {
   const router = useRouter();
   return (
-    <React.Fragment>
-      <div className="flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-semibold text-primary-500"> {nextWorkshop.topic} </h2>
-        <p>{nextWorkshop?.description}</p>
+    <div className="flex h-full w-full flex-col gap-4">
+      <div className="flex w-full flex-col justify-center">
+        <h2 className="text-3xl font-semibold text-primary-200"> {nextWorkshop.topic} </h2>
+        <p className="text-sm text-primary-400">{nextWorkshop?.description}</p>
       </div>
       {nextWorkshop?.questions.length > 0 && (
-        <div className="flex flex-col items-center justify-center">
-          <h4 className="text-xl font-semibold text-primary-500">Questions</h4>
-          <ul className="mb-4 flex flex-col items-center justify-center">
-            {nextWorkshop?.questions.map((question) => <li key={question.id}>{question.text}</li>)}
-          </ul>
-          <Button onClick={() => router.push(`/workshop/${nextWorkshop.id}`)}>Add question</Button>
+        <div className="flex h-full w-full flex-col  justify-between">
+          <div>
+            <h4 className="text-xl font-semibold text-primary-200">Questions</h4>
+            <ul className="mb-4 flex flex-col  text-primary-400">
+              {nextWorkshop?.questions.map((question) => (
+                <li key={question.id}>{question.text}</li>
+              ))}
+            </ul>
+          </div>
+          <button
+            onClick={() => router.push(`/workshop/${nextWorkshop.id}`)}
+            className=" flex cursor-pointer items-center  gap-2 self-end uppercase text-accent hover:text-accent-light "
+          >
+            add question
+            <ArrowRightIcon />
+          </button>
         </div>
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -5,12 +5,12 @@ import type { ButtonHTMLAttributes } from "react";
 import React from "react";
 
 const buttonVariants = cva(
-  "flex cursor-pointer items-center justify-center gap-2 rounded-sm transition-all disabled:pointer-events-none disabled:opacity-50",
+  "flex cursor-pointer items-center justify-center gap-2 rounded-sm transition-all disabled:pointer-events-none disabled:opacity-20",
   {
     variants: {
       variant: {
         filled:
-          "border bg-primary-50 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 active:bg-primary-50",
+          "border bg-primary-100 text-primary-900 hover:bg-primary-200 hover:ring-1 hover:ring-primary-200 active:bg-primary-50 ",
         outlined:
           "border border-primary-300 text-primary-300 hover:text-primary-100 hover:ring-1 hover:ring-primary-100 active:bg-primary-50 active:text-primary-900",
       },

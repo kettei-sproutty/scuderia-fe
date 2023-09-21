@@ -29,7 +29,7 @@ const FakeShell = ({ messages }: FakeShellProps) => {
         <span className="h-3 w-3 rounded-full bg-success" />
       </div>
 
-      <div className="no-scrollbar flex  h-full flex-col overflow-auto overflow-y-scroll px-2 ">
+      <div className=" flex  h-full flex-col overflow-auto overflow-y-scroll px-2 ">
         {messages.map((message, idx) => {
           return (
             <div className="p-2 text-sm" key={idx}>

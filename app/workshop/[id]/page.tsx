@@ -16,16 +16,19 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
     where: {
       workshopId: params.id,
     },
+    include: {
+      author: true,
+    },
   });
 
   const author = await authentication("server-action", cookies).getUser();
 
   return (
-    <div className="flex flex-col gap-4 overflow-auto ">
+    <div className="flex h-full w-full flex-col gap-4 overflow-y-scroll pl-4 pr-2">
       {questions.map((question) => (
         <Card
           key={question.id}
-          title={author.name || ""}
+          title={question.author.name || ""}
           titleAction={
             <Upvote
               questionId={question.id}

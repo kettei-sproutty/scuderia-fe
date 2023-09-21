@@ -43,7 +43,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className={" relative flex h-full w-full flex-col justify-center gap-4 "}>
+    <div className={" relative flex h-full w-full flex-col justify-center gap-4  "}>
       <motion.div
         animate={{ scale: [0.8, 1] }}
         transition={{
@@ -62,7 +62,7 @@ const AuthPage = () => {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className={"absolute bottom-0 right-0"}
+        className={"absolute bottom-8 right-8"}
         style={bottomRightStyle}
       />
       <div className="mx-auto flex  h-full w-full items-center justify-center lg:h-2/3 lg:w-3/5 ">

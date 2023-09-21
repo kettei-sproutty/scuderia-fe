@@ -30,13 +30,13 @@ const Upvote = ({ questionId, questionUpvotes, workshopId, profileId }: UpvotePr
     <button
       type="button"
       className={clsx(
-        `flex items-center gap-1 border-none bg-transparent py-0 transition-all hover:text-accent-light disabled:text-accent-light`,
+        `flex items-center gap-1 border-none bg-transparent  transition-all hover:text-accent-light disabled:text-accent-light`,
         { "text-accent-light": upvoted },
       )}
       onClick={upvoteQuestion}
     >
       <ArrowUpCircleIcon className={"h-6"} />{" "}
-      {questionUpvotes && questionUpvotes.length > 0 && <span>( {questionUpvotes.length} )</span>}
+      {questionUpvotes && questionUpvotes.length > 0 && <span> {questionUpvotes.length} </span>}
     </button>
   );
 };
