@@ -42,8 +42,17 @@ const HomePage = async () => {
   );
 
   return (
-    <div className=" grid-rows-9 grid h-full grid-cols-12 gap-8 ">
-      <section className="col-span-4 row-span-6">
+    <div className=" grid h-full grid-cols-2 gap-8 ">
+      <section className="col-span-2 row-span-3 lg:col-span-1">
+        <CardGlass
+          title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}
+          infoLabel="Next Workshop"
+        >
+          {nextWorkshop && <NextWorkshop nextWorkshop={nextWorkshop} />}
+        </CardGlass>
+      </section>
+
+      <section className="col-span-2 row-span-6 lg:col-span-1">
         <CardGlass
           infoLabel="My questions"
           title={Object.entries(myQuestionOrdered).length === 0 ? "No questions available" : ""}
@@ -62,15 +71,6 @@ const HomePage = async () => {
           ))}
         </CardGlass>
       </section>
-      <section className="col-span-4 row-span-3">
-        <CardGlass
-          title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}
-          infoLabel="Next Workshop"
-        >
-          {nextWorkshop && <NextWorkshop nextWorkshop={nextWorkshop} />}
-        </CardGlass>
-      </section>
-
       {/* */}
     </div>
   );
