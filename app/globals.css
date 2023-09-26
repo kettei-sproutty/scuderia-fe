@@ -8,7 +8,6 @@
     font-style: normal;
     src: url("../public/fonts/ferro-rosso.regular.ttf") format("truetype");
   }
-
 }
 
 @layer components {
@@ -16,7 +15,7 @@
     @apply flex items-center justify-center bg-primary-800 px-2 text-primary-100;
   }
 
-  .login-form{
+  .login-form {
     @apply w-full h-full flex justify-center flex-col gap-12;
   }
 }
@@ -31,7 +30,7 @@
     scrollbar-width: none;
   }
 
-    *::-webkit-scrollbar {
+  *::-webkit-scrollbar {
     width: 8px;
   }
 
@@ -45,16 +44,42 @@
     border: 3px solid transparent;
   }
 
-  ul{
+  ul {
     list-style-type: disc;
     list-style-position: inside;
   }
-
-
-
 }
 
+.pageContent {
+  view-transition-name: page-content;
+}
 
+::view-transition-old(page-content) {
+  animation: fade-out-right 0.5s ease-out;
+}
 
+::view-transition-new(page-content) {
+  animation: fade-in-left 0.5s ease-out;
+}
 
+@keyframes fade-out-right {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
 
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
