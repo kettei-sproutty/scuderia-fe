@@ -58,7 +58,7 @@ const AuthPage = () => {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className={"absolute left-[-200px] top-[-300px]"}
+        className={"absolute left-[-200px] top-[-300px] hidden md:block"}
         style={topLeftStyle}
       />
 
@@ -69,7 +69,7 @@ const AuthPage = () => {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className={"absolute bottom-8 right-8"}
+        className={"absolute bottom-8 right-8 hidden md:block"}
         style={bottomRightStyle}
       />
       <div className="mx-auto flex  h-full w-full items-center justify-center lg:h-2/3 lg:w-3/5 ">

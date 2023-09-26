@@ -15,6 +15,7 @@ const EasterEgg = ({ disableCameo, email }: EasterEggProps) => {
 
   setTimeout(() => {
     setShowEasterEgg(false);
+    show();
     disableCameo();
   }, 3000);
 
@@ -22,12 +23,23 @@ const EasterEgg = ({ disableCameo, email }: EasterEggProps) => {
     setEndAnimation(true);
   }, 2500);
 
+  const hide = () => {
+    const header = document?.querySelector("header");
+    header && header.style.setProperty("display", "none");
+  };
+
+  const show = () => {
+    const header = document?.querySelector("header");
+    header && header.style.setProperty("display", "block");
+  };
+  hide();
+
   return (
     <React.Fragment>
       {showEasterEgg && (
         <motion.div
           className={cn(
-            `fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-${cameoOptions[email].color} to-black backdrop-blur-lg`,
+            `fixed inset-0 z-50 bg-gradient-to-br from-${cameoOptions[email].color} to-black backdrop-blur-lg h-screen w-screen`,
           )}
           initial={{ opacity: 0 }}
           animate={{ opacity: !endAnimation ? 1 : 0 }}
@@ -35,8 +47,8 @@ const EasterEgg = ({ disableCameo, email }: EasterEggProps) => {
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
           <Image
-            width={500}
-            height={500}
+            layout="fill"
+            objectFit="contain"
             src={cameoOptions[email].image}
             alt="funny image about the user"
           />

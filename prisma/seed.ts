@@ -33,7 +33,8 @@ const main = async () => {
     data: {
       topic: "Example workshop",
       description: "This is an example workshop",
-      date: new Date(Date.now() + 3600 * 24 * 31),
+      hosts: ["Francesco Malagisi", "Alin Ioan Dan", "Alessio Marchi"],
+      date: new Date(Date.now() + 36000 * 24 * 31),
     },
   });
 
@@ -42,7 +43,8 @@ const main = async () => {
     return {
       topic: `Example workshop ${index}`,
       description: `This is an example workshop ${index}`,
-      date: new Date(Date.now() + 3600 * 24 * index),
+      hosts: ["Francesco Malagisi", "Alin Ioan Dan", "Alessio Marchi"],
+      date: new Date(Date.now() + 3600 * 1000 * 24 * index),
     };
   });
 

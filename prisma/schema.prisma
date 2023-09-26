@@ -24,6 +24,7 @@ model Workshop {
   topic       String
   description String?
   date        DateTime
+  hosts       String[]   @default([])
   created_at  DateTime   @default(now())
   questions   Question[]
 }
