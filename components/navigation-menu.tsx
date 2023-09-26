@@ -7,6 +7,7 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@utils/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import AnimatedLink from "./animated-link";
 
 type NavigationMenuProps = React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root> & {
   links: { name: string; href: string }[];
@@ -26,7 +27,7 @@ const NavigationMenu = React.forwardRef<
       <NavigationMenuList>
         {links.map(({ name, href }) => (
           <NavigationMenuItem key={name}>
-            <Link href={href} legacyBehavior passHref>
+            <AnimatedLink href={href}>
               <NavigationMenuLink
                 className={cn(navigationMenuTriggerStyle(), {
                   "text-accent-light ": pathname === href,
@@ -34,7 +35,7 @@ const NavigationMenu = React.forwardRef<
               >
                 {name}
               </NavigationMenuLink>
-            </Link>
+            </AnimatedLink>
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>
