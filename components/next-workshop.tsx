@@ -16,7 +16,7 @@ const NextWorkshop = ({ nextWorkshop }: NextWorkshopProps) => {
         <h2 className="text-3xl font-semibold text-primary-200"> {nextWorkshop.topic} </h2>
         <p className="text-sm text-primary-400">{nextWorkshop?.description}</p>
       </div>
-      {nextWorkshop?.questions.length > 0 && (
+      {nextWorkshop && (
         <div className="flex h-full w-full flex-col  justify-between">
           <div>
             <h4 className="text-xl font-semibold text-primary-200">Questions</h4>

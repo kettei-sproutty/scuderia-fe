@@ -1,5 +1,5 @@
 "use client";
-import { CommandLineIcon } from "@heroicons/react/20/solid";
+import { CodeBracketIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 type ShellInfoBarProps = {
@@ -10,7 +10,7 @@ const ShellInfoBar = ({ secondSegment, thirdSegment }: ShellInfoBarProps) => {
   return (
     <div className="flex">
       <div className=" flex h-5 items-center rounded-l-sm bg-primary-800 px-2 text-center text-xs text-white">
-        <CommandLineIcon className="h-4" />
+        <CodeBracketIcon className="h-4" />
       </div>
       <div className="h-0 w-0 border-[10px] border-b-primary-800 border-l-primary-800 border-r-primary-700 border-t-primary-700" />
 
