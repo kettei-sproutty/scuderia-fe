@@ -33,11 +33,7 @@ const FakeShell = ({ messages }: FakeShellProps) => {
         {messages.map((message, idx) => {
           return (
             <div className="p-2 text-sm" key={idx}>
-              <ShellInfoBar
-                firstSegment={getOS()}
-                secondSegment={"scuderia-fe"}
-                thirdSegment={message.time}
-              />
+              <ShellInfoBar secondSegment={"scuderia-fe"} thirdSegment={message.time} />
               <div className={"mt-2 flex gap-4 pl-4"}>
                 <div className={"  flex text-lg font-semibold leading-none text-accent-light"}>
                   {"»"}

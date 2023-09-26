@@ -6,6 +6,11 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "**/*.stories.ts, **/*.stories.tsx",
   ],
+  safelist: [
+    {
+      pattern: /^from-.*/,
+    },
+  ],
   theme: {
     extend: {
       fontFamily: {
