@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/kettei-sproutty/scuderia-fe/compare/v1.1.0...v1.2.0) (2023-09-26)
+
+
+### Features
+
+* **workshop:** layout workshops ([eebb598](https://github.com/kettei-sproutty/scuderia-fe/commit/eebb598abc7cc09ad0011d1bdda7fd84016db387))
+
+
+### Bug Fixes
+
+* design cameo ([#134](https://github.com/kettei-sproutty/scuderia-fe/issues/134)) ([6b971b3](https://github.com/kettei-sproutty/scuderia-fe/commit/6b971b38f2b0af24453610ef0a1fd44f8781a999))
+
 ## [1.1.0](https://github.com/kettei-sproutty/scuderia-fe/compare/v1.0.1...v1.1.0) (2023-09-26)
 
 
