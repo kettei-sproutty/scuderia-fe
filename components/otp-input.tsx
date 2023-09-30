@@ -1,5 +1,6 @@
 "use client";
-import { ChangeEvent, KeyboardEvent, createRef, useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
+import type { ChangeEvent, ClipboardEvent, KeyboardEvent } from "react";
 
 type OtpInputProps = {
   onOtpChange: (value: string) => void;
@@ -12,7 +13,7 @@ const OtpInput = ({ onOtpChange }: OtpInputProps) => {
     .map(() => createRef<HTMLInputElement>());
 
   const handleChange = (value: string, index: number) => {
-    if (!isNaN(Number(value))) {
+    if (!isNaN(parseInt(value))) {
       const newOtpValues = [...otpValues];
       newOtpValues[index] = value;
       setOtpValues(newOtpValues);
@@ -22,6 +23,22 @@ const OtpInput = ({ onOtpChange }: OtpInputProps) => {
         otpInputRefs[index + 1]?.current?.focus();
       }
     }
+  };
+
+  const handlePaste = (event: ClipboardEvent<HTMLInputElement>) => {
+    const pasteData = event.clipboardData.getData("text/plain").trim();
+    if (pasteData.length !== 6) return;
+
+    const newOtpValues = [...otpValues];
+
+    pasteData.split("").forEach((value, index) => {
+      if (!isNaN(parseInt(value))) {
+        newOtpValues[index] = value;
+      }
+    });
+
+    setOtpValues(newOtpValues);
+    otpInputRefs[otpValues.length - 1].current?.focus();
   };
 
   useEffect(() => {
@@ -64,6 +81,7 @@ const OtpInput = ({ onOtpChange }: OtpInputProps) => {
           value={val}
           onChange={(ev: ChangeEvent<HTMLInputElement>) => handleChange(ev.target.value, idx)}
           onKeyDown={(ev: KeyboardEvent<HTMLInputElement>) => handleKeyDown(ev, idx)}
+          onPaste={handlePaste}
           ref={otpInputRefs[idx]}
         />
       ))}
