@@ -12,64 +12,39 @@ const AnimatedText: FC<ReflectedTextProps> = ({ text }) => {
   // Variants for container
   const container = {
     hidden: { opacity: 0 },
-    visible: () => ({
+    visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.03, delayChildren: 0.7 },
-    }),
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: 0.01,
+      },
+    },
   };
 
   // Variants for each letter
-  const child = {
+  const child = (i: number) => ({
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      x: 0,
-      y: 0,
       transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
+        delay: i * 0.01, // multiply the index by a small delay value
       },
     },
-    hidden: {
-      opacity: 0,
-      x: -20,
-      y: 10,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
+  });
 
   return (
-    <div className={"flex flex-col items-center"}>
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className={" flex w-full overflow-hidden font-ferroRosso text-4xl lg:text-9xl"}
-      >
-        {letters.map((letter, index) => (
-          <motion.span variants={child} key={index}>
-            {letter === " " ? "\u00A0" : letter}
-          </motion.span>
-        ))}
-      </motion.div>
-      <motion.div
-        className={"h-1 bg-redFerrari"}
-        initial={{ width: 0 }}
-        animate={{ width: "100%" }}
-      />
-
-      <motion.div
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1, transition: { duration: 1, delay: 1 } }}
-        className={"font-thin uppercase lg:text-2xl"}
-      >
-        coming soon
-      </motion.div>
-    </div>
+    <motion.div
+      variants={container}
+      initial="hidden"
+      animate="visible"
+      className={" flex w-full flex-wrap overflow-hidden "}
+    >
+      {letters.map((letter, index) => (
+        <motion.span variants={child(index)} key={index}>
+          {letter === " " ? "\u00A0" : letter}
+        </motion.span>
+      ))}
+    </motion.div>
   );
 };
 

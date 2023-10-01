@@ -4,6 +4,7 @@ import { authentication } from "@lib/authentication";
 import { cookies } from "next/headers";
 import React from "react";
 import Upvote from "./upvote";
+import AnimatedText from "@components/animated-text";
 
 type WorkshopByIdPageProps = {
   params: {
@@ -38,7 +39,7 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
             />
           }
         >
-          {question.text}
+          <AnimatedText text={question.text} />
         </Card>
       ))}
     </div>

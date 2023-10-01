@@ -12,7 +12,7 @@
 
 @layer components {
   .input-text-label {
-    @apply flex items-center justify-center bg-primary-800 px-2 text-primary-100;
+    @apply flex items-center justify-center   px-2 text-primary-200;
   }
 
   .login-form {

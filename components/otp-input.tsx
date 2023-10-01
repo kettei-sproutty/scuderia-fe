@@ -75,7 +75,7 @@ const OtpInput = ({ onOtpChange }: OtpInputProps) => {
     <div className="flex justify-center gap-4 text-lg font-bold text-primary-500">
       {otpValues.map((val, idx) => (
         <input
-          className="h-8 w-8 rounded-sm bg-primary-800  text-center ring ring-primary-700 focus-within:ring-2  focus-within:ring-primary-200 hover:ring-2 hover:ring-primary-200 focus:outline-none lg:h-12 lg:w-12"
+          className="h-8 w-8 rounded-sm bg-primary-900/50  text-center ring ring-primary-700 focus-within:ring-2  focus-within:ring-primary-200 hover:ring-2 hover:ring-primary-200 focus:outline-none md:h-12 md:w-12"
           key={idx}
           maxLength={1}
           value={val}

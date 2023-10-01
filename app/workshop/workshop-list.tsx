@@ -12,7 +12,7 @@ const WorkshopList = ({ workshops }: WorkshopListProps) => {
       <ul className="flex flex-col gap-10">
         {workshops.map((workshop) => (
           <li
-            className="relative mr-2 flex flex-col rounded-sm border  border-primary-700 bg-primary-800/50 p-4 pt-10  text-white backdrop-blur-lg"
+            className="relative mr-2 flex flex-col rounded-md border  border-primary-700 bg-primary-800/50 p-4 pt-10  text-white backdrop-blur-lg"
             key={workshop.id}
           >
             <span className="fixed left-0 top-0 w-full border-b border-primary-700 bg-primary-900/50 px-4 py-1 text-sm text-primary-400">
