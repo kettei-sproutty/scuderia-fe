@@ -13,6 +13,7 @@ model Profile {
   name       String?
   bio        String?
   picture    String?
+  username   String?    @unique
   created_at DateTime   @default(now())
   questionId String?
   Answer     Answer[]

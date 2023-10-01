@@ -4,6 +4,7 @@ import client from "@lib/db";
 import React from "react";
 import CardGlass from "@components/card-glass";
 import NextWorkshop from "@components/next-workshop";
+import SetUsername from "./set-username";
 
 const HomePage = async () => {
   const authenticationHelper = authentication("rsc", cookies);
@@ -42,37 +43,42 @@ const HomePage = async () => {
   );
 
   return (
-    <div className=" grid h-full grid-cols-2 gap-8 ">
-      <section className="col-span-2 row-span-3 lg:col-span-1">
-        <CardGlass
-          title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}
-          infoLabel="Next Workshop"
-        >
-          {nextWorkshop && <NextWorkshop nextWorkshop={nextWorkshop} />}
-        </CardGlass>
-      </section>
+    <React.Fragment>
+      {user.username && (
+        <div className=" grid h-full grid-cols-2 gap-8 ">
+          <section className="col-span-2 row-span-3 lg:col-span-1">
+            <CardGlass
+              title={nextWorkshop?.topic ? "" : "There is no scheduled workshop"}
+              infoLabel="Next Workshop"
+            >
+              {nextWorkshop && <NextWorkshop nextWorkshop={nextWorkshop} />}
+            </CardGlass>
+          </section>
 
-      <section className="col-span-2 row-span-6 lg:col-span-1">
-        <CardGlass
-          infoLabel="My questions"
-          title={Object.entries(myQuestionOrdered).length === 0 ? "No questions available" : ""}
-        >
-          {Object.entries(myQuestionOrdered).map(([workshop, questions]) => (
-            <div key={workshop} className="mb-4 flex w-full flex-col ">
-              <h2 className="text-3xl font-semibold text-primary-200"> {workshop} </h2>
-              <ul>
-                {questions.map((question) => (
-                  <li className="text-primary-400" key={question}>
-                    {question}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </CardGlass>
-      </section>
-      {/* */}
-    </div>
+          <section className="col-span-2 row-span-6 lg:col-span-1">
+            <CardGlass
+              infoLabel="My questions"
+              title={Object.entries(myQuestionOrdered).length === 0 ? "No questions available" : ""}
+            >
+              {Object.entries(myQuestionOrdered).map(([workshop, questions]) => (
+                <div key={workshop} className="mb-4 flex w-full flex-col ">
+                  <h2 className="text-3xl font-semibold text-primary-200"> {workshop} </h2>
+                  <ul>
+                    {questions.map((question) => (
+                      <li className="text-primary-400" key={question}>
+                        {question}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </CardGlass>
+          </section>
+          {/* */}
+        </div>
+      )}
+      {!user.username && <SetUsername />}
+    </React.Fragment>
   );
 };
 

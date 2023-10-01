@@ -5,18 +5,32 @@ import Button from "./button";
 
 type CardProps = {
   title?: string;
+  subtitle?: string;
   children: ReactNode;
   confirmAction?: { label: string; action: () => void };
   cancelAction?: { label: string; action: () => void };
   titleAction?: ReactNode;
 };
 
-const Card = ({ children, title, confirmAction, cancelAction, titleAction }: CardProps) => {
+const Card = ({
+  children,
+  title,
+  confirmAction,
+  cancelAction,
+  titleAction,
+  subtitle,
+}: CardProps) => {
   return (
     <div className="w-full rounded-sm rounded-t-md border border-primary-700 bg-primary-800 text-primary-100 transition-all  duration-300 ease-in hover:transition-all ">
-      {title && (
+      {(title || subtitle) && (
         <div className="flex items-center justify-between bg-primary-700 p-2 font-semibold">
-          {title} {titleAction && titleAction}
+          <div className="flex items-center">
+            {title}
+            {title && subtitle && <div className="mx-2 h-2 w-2 rounded-full bg-accent"></div>}
+
+            {subtitle && <span className="font-thin">{subtitle}</span>}
+          </div>{" "}
+          {titleAction && titleAction}
         </div>
       )}
       {children && <div className="bg-primary-800/50 p-4">{children}</div>}
