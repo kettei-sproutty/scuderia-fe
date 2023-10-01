@@ -7,18 +7,14 @@ import CardGlass from "@components/card-glass";
 import React from "react";
 import EasterEgg from "./easter-egg";
 import { cameoMailList } from "@utils/cameo";
+import { composeMessage } from "@utils/shell-messages";
 
 const AuthPage = () => {
   const [email, setEmail] = useState<string>("");
   const [otp, setOtp] = useState<string>("");
   const [step, setStep] = useState<Step>(Step.Email);
   const [isCameoShowed, setIsCameoShowed] = useState(false);
-  const [shellMessages, setShellMessages] = useState<ShellMessage[]>([
-    {
-      content: "Welcome to Scuderia-FE",
-      time: new Date().toLocaleTimeString(),
-    },
-  ]);
+  const [shellMessages, setShellMessages] = useState<ShellMessage[]>([composeMessage("welcome")]);
 
   const updateMessages = (lastMessage: ShellMessage) => {
     setShellMessages((prev) => [...prev, lastMessage]);
@@ -58,7 +54,7 @@ const AuthPage = () => {
           repeat: Infinity,
           repeatType: "reverse",
         }}
-        className={"absolute left-[-200px] top-[-300px] hidden md:block"}
+        className={"absolute left-[-12.5rem] top-[-20rem] hidden md:block"}
         style={topLeftStyle}
       />
 
@@ -72,22 +68,25 @@ const AuthPage = () => {
         className={"absolute bottom-8 right-8 hidden md:block"}
         style={bottomRightStyle}
       />
-      <div className="mx-auto flex  h-full w-full items-center justify-center lg:h-2/3 lg:w-3/5 ">
-        <CardGlass title="LOGIN">
-          {step === Step.Email ? (
-            <EmailStep
-              setEmail={setEmail}
-              setStep={setStep}
-              onFirstFocus={updateMessages}
-              onCodeSent={updateMessages}
-            />
-          ) : (
-            <CodeStep email={email} otp={otp} setOtp={setOtp} onError={updateMessages} />
-          )}
-        </CardGlass>
+
+      <div className="mx-auto flex  h-full w-full items-center justify-center">
+        <div className="m-auto h-full w-full md:max-h-[32rem] md:w-[32rem] ">
+          <CardGlass title="LOGIN">
+            {step === Step.Email ? (
+              <EmailStep
+                setEmail={setEmail}
+                setStep={setStep}
+                onFirstFocus={updateMessages}
+                onCodeSent={updateMessages}
+              />
+            ) : (
+              <CodeStep email={email} otp={otp} setOtp={setOtp} onError={updateMessages} />
+            )}
+          </CardGlass>
+        </div>
       </div>
       {/*min and max heigth is necessary to avoid layout shifting when messages are added to the fake shell*/}
-      <div className={"flex h-1/3 max-h-[33.333333%] min-h-[33.333333%] w-full"}>
+      <div className={" flex max-h-[33%] min-h-[33%] w-full"}>
         <FakeShell messages={shellMessages} />
       </div>
     </div>

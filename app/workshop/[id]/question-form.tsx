@@ -33,7 +33,7 @@ const QuestionForm: FC<QuestionFormProps> = ({ workshopId }) => {
 
   return (
     <form
-      className="flex items-center justify-between gap-4 rounded-sm border border-primary-700 bg-primary-800/50 p-4  "
+      className="flex items-center justify-between gap-4 rounded-md border border-primary-700 bg-primary-800/50 p-4  "
       action={saveWorkshop}
     >
       <TextArea
