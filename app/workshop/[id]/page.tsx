@@ -29,7 +29,8 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
       {questions.map((question) => (
         <Card
           key={question.id}
-          title={question.author.name || ""}
+          title={question.author?.username ? `${question.author.username}` : ""}
+          subtitle={`<${question.author.email}>` || ""}
           titleAction={
             <Upvote
               questionId={question.id}
