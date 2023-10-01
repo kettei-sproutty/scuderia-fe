@@ -1,10 +1,10 @@
 "use client";
-import { getOS } from "@utils/operating-system";
-import React, { ReactNode, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ShellInfoBar from "@components/fake-shell/shell-info-bar";
+import AnimatedText from "@components/animated-text";
 
 export type ShellMessage = {
-  content: ReactNode;
+  content: string;
   time: string;
 };
 
@@ -22,7 +22,7 @@ const FakeShell = ({ messages }: FakeShellProps) => {
   }, [messages]);
 
   return (
-    <div className=" flex h-full w-full flex-col  rounded-md  border  border-primary-700 bg-primary-950/50 text-white backdrop-blur-lg">
+    <div className=" flex h-full w-full flex-col  rounded-md  border  border-primary-700 bg-primary-950/70 text-white  ">
       <div className="sticky  flex h-8 w-full items-center justify-start gap-2 rounded-t-md border-b  border-primary-700 bg-primary-800 px-4   ">
         <span className="h-3 w-3 rounded-full bg-error" />
         <span className="h-3 w-3 rounded-full bg-warning-light" />
@@ -39,7 +39,8 @@ const FakeShell = ({ messages }: FakeShellProps) => {
                   {"»"}
                 </div>
 
-                <div className="flex gap-2 ">{message.content}</div>
+                <AnimatedText text={message.content} />
+                {/*<div className="flex gap-2 ">{message.content}</div>*/}
               </div>
             </div>
           );
