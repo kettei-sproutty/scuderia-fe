@@ -36,7 +36,7 @@ const Upvote = ({ questionId, questionUpvotes, workshopId, profileId }: UpvotePr
       onClick={upvoteQuestion}
     >
       <ArrowUpCircleIcon className={"h-6"} />{" "}
-      {questionUpvotes && questionUpvotes.length > 0 && <span> {questionUpvotes.length} </span>}
+      <span className="w-3"> {questionUpvotes.length > 0 ? questionUpvotes.length : ""} </span>
     </button>
   );
 };
