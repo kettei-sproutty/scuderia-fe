@@ -7,7 +7,7 @@ const CardGlass = ({ children, title, infoLabel }: CardGlassProps) => {
   return (
     <div
       className={
-        "flex h-full w-full flex-col items-center justify-center gap-8 rounded-md border border-primary-700 bg-primary-800/50  pb-4 pt-12"
+        "relative flex h-full w-full flex-col items-center justify-center gap-8 rounded-md border border-primary-700 bg-primary-800/50  pb-4 pt-12"
       }
     >
       {infoLabel && (
