@@ -26,7 +26,9 @@ const Card = ({
         <div className="flex items-center justify-between rounded-t-sm bg-primary-900/50 p-2 font-semibold">
           <div className="flex items-center">
             {title}
-            {title && subtitle && <div className="mx-2 h-2 w-2 rounded-full bg-accent"></div>}
+            {title && subtitle && (
+              <div className="mx-2 h-[4px] w-[4px] rounded-full bg-accent"></div>
+            )}
 
             {subtitle && <span className="font-thin">{subtitle}</span>}
           </div>{" "}

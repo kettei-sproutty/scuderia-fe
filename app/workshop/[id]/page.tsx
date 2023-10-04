@@ -24,9 +24,19 @@ const WorkshopByIdPage = async ({ params }: WorkshopByIdPageProps) => {
 
   const author = await authentication("server-action", cookies).getUser();
 
+  const sortedQuestions = questions.sort((a, b) => {
+    // Sort by upvotes first
+    if (b.upvotes.length !== a.upvotes.length) {
+      return b.upvotes.length - a.upvotes.length;
+    }
+
+    // If upvotes are equal, sort by creation date
+    return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
+  });
+
   return (
     <div className="flex h-full w-full flex-col gap-4 overflow-y-scroll pl-4 pr-2">
-      {questions.map((question) => (
+      {sortedQuestions.map((question) => (
         <Card
           key={question.id}
           title={question.author?.username ? `${question.author.username}` : ""}
