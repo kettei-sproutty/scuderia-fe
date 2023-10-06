@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0](https://github.com/kettei-sproutty/scuderia-fe/compare/v1.2.0...v1.3.0) (2023-10-06)
+
+
+### Features
+
+* set username ([#143](https://github.com/kettei-sproutty/scuderia-fe/issues/143)) ([da93872](https://github.com/kettei-sproutty/scuderia-fe/commit/da93872f7d395379515f1e18d97aea20289ca9bd))
+* **vercel:** add analytics ([4064856](https://github.com/kettei-sproutty/scuderia-fe/commit/4064856a99c32eb871344d5073a3c3d5ab866c46))
+
+
+### Bug Fixes
+
+* add no question message ([a68c1cb](https://github.com/kettei-sproutty/scuderia-fe/commit/a68c1cbf38829a16f933762f6283f9271aaf3c56))
+* **auth-page:** add paste event on code input ([#136](https://github.com/kettei-sproutty/scuderia-fe/issues/136)) ([cc804e7](https://github.com/kettei-sproutty/scuderia-fe/commit/cc804e70d335755b4db98f9357273a3644a57a02))
+* sort workshops ([#145](https://github.com/kettei-sproutty/scuderia-fe/issues/145)) ([213bcab](https://github.com/kettei-sproutty/scuderia-fe/commit/213bcabb0ee2225aa32fb5ad96518155a0d1d0f3))
+
 ## [1.2.0](https://github.com/kettei-sproutty/scuderia-fe/compare/v1.1.0...v1.2.0) (2023-09-26)
 
 
