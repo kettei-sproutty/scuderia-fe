@@ -20,11 +20,16 @@ const NextWorkshop = ({ nextWorkshop }: NextWorkshopProps) => {
         <div className="flex h-full w-full flex-col  justify-between">
           <div>
             <h4 className="text-xl font-semibold text-primary-200">Questions</h4>
-            <ul className="mb-4 flex flex-col  text-primary-400">
-              {nextWorkshop?.questions.map((question) => (
-                <li key={question.id}>{question.text}</li>
-              ))}
-            </ul>
+            {nextWorkshop?.questions.length > 0 && (
+              <ul className="mb-4 flex flex-col  text-primary-400">
+                {nextWorkshop?.questions.map((question) => (
+                  <li key={question.id}>{question.text}</li>
+                ))}
+              </ul>
+            )}
+            {nextWorkshop?.questions.length === 0 && (
+              <p className="text-sm text-primary-400">No questions yet</p>
+            )}
           </div>
           <button
             onClick={() => router.push(`/workshop/${nextWorkshop.id}`)}
