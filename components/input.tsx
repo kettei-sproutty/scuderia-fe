@@ -29,7 +29,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
         >
           <label
             htmlFor={id}
-            className="input-text-label rounded-l-sm   border-r border-primary-700   font-semibold  "
+            className="input-text-label rounded-l-sm border-r border-primary-700 font-semibold"
           >
             {label}
             {required && <span>*</span>}
@@ -38,7 +38,7 @@ const InputText = React.forwardRef<HTMLInputElement, InputTextProps>(
             id={id}
             type="text"
             ref={ref}
-            className="flex w-full   bg-transparent px-2 py-1.5 text-primary-200 focus:outline-none"
+            className="flex w-full bg-transparent px-2 py-1.5 text-primary-200 focus:outline-none"
             {...props}
           />
           {suffix && (
